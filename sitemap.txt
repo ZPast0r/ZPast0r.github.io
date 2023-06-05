@@ -1,0 +1,11 @@
+http://example.com/2023/06/05/HTB-ArcheType/
+http://example.com/about/index.html
+http://example.com/archives/index.html
+http://example.com/link/index.html
+http://example.com/categories/index.html
+http://example.com/tags/index.html
+http://example.com/2023/06/05/hello-world/
+http://example.com/
+http://example.com/tags/HTB/
+http://example.com/categories/CTF/
+http://example.com/categories/CTF/HTB/
