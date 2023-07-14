@@ -3,11 +3,11 @@
   <title>ZPast0r</title>
   
   
-  <link href="http://example.com/atom.xml" rel="self"/>
+  <link href="https://www.zpast0r.com/atom.xml" rel="self"/>
   
-  <link href="http://example.com/"/>
+  <link href="https://www.zpast0r.com/"/>
   <updated>2023-07-14T03:36:04.306Z</updated>
-  <id>http://example.com/</id>
+  <id>https://www.zpast0r.com/</id>
   
   <author>
     <name>ZPast0r</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>HTB-Sau</title>
-    <link href="http://example.com/HTB-Sau.html"/>
-    <id>http://example.com/HTB-Sau.html</id>
+    <link href="https://www.zpast0r.com/HTB-Sau.html"/>
+    <id>https://www.zpast0r.com/HTB-Sau.html</id>
     <published>2023-07-14T03:15:34.105Z</published>
     <updated>2023-07-14T03:36:04.306Z</updated>
     
@@ -30,19 +30,19 @@
     
     
     
-    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
+    <category term="CTF" scheme="https://www.zpast0r.com/categories/CTF/"/>
     
-    <category term="HTB" scheme="http://example.com/categories/CTF/HTB/"/>
+    <category term="HTB" scheme="https://www.zpast0r.com/categories/CTF/HTB/"/>
     
     
-    <category term="Open Beat SeasonII" scheme="http://example.com/tags/Open-Beat-SeasonII/"/>
+    <category term="Open Beat SeasonII" scheme="https://www.zpast0r.com/tags/Open-Beat-SeasonII/"/>
     
   </entry>
   
   <entry>
     <title>HTB-Vaccine</title>
-    <link href="http://example.com/HTB-Vaccine.html"/>
-    <id>http://example.com/HTB-Vaccine.html</id>
+    <link href="https://www.zpast0r.com/HTB-Vaccine.html"/>
+    <id>https://www.zpast0r.com/HTB-Vaccine.html</id>
     <published>2023-07-06T02:08:52.512Z</published>
     <updated>2023-07-06T08:21:30.099Z</updated>
     
@@ -53,19 +53,19 @@
     
     
     
-    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
+    <category term="CTF" scheme="https://www.zpast0r.com/categories/CTF/"/>
     
-    <category term="HTB" scheme="http://example.com/categories/CTF/HTB/"/>
+    <category term="HTB" scheme="https://www.zpast0r.com/categories/CTF/HTB/"/>
     
     
-    <category term="HTB-Vaccine" scheme="http://example.com/tags/HTB-Vaccine/"/>
+    <category term="HTB-Vaccine" scheme="https://www.zpast0r.com/tags/HTB-Vaccine/"/>
     
   </entry>
   
   <entry>
     <title>HTB-Hactics</title>
-    <link href="http://example.com/HTB-Tactics.html"/>
-    <id>http://example.com/HTB-Tactics.html</id>
+    <link href="https://www.zpast0r.com/HTB-Tactics.html"/>
+    <id>https://www.zpast0r.com/HTB-Tactics.html</id>
     <published>2023-07-06T02:08:52.510Z</published>
     <updated>2023-07-06T08:15:33.772Z</updated>
     
@@ -76,19 +76,19 @@
     
     
     
-    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
+    <category term="CTF" scheme="https://www.zpast0r.com/categories/CTF/"/>
     
-    <category term="HTB" scheme="http://example.com/categories/CTF/HTB/"/>
+    <category term="HTB" scheme="https://www.zpast0r.com/categories/CTF/HTB/"/>
     
     
-    <category term="HTB-Hactics" scheme="http://example.com/tags/HTB-Hactics/"/>
+    <category term="HTB-Hactics" scheme="https://www.zpast0r.com/tags/HTB-Hactics/"/>
     
   </entry>
   
   <entry>
     <title>HTB-Synced</title>
-    <link href="http://example.com/HTB-Synced.html"/>
-    <id>http://example.com/HTB-Synced.html</id>
+    <link href="https://www.zpast0r.com/HTB-Synced.html"/>
+    <id>https://www.zpast0r.com/HTB-Synced.html</id>
     <published>2023-07-06T02:08:52.507Z</published>
     <updated>2023-07-06T08:15:28.081Z</updated>
     
@@ -99,19 +99,19 @@
     
     
     
-    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
+    <category term="CTF" scheme="https://www.zpast0r.com/categories/CTF/"/>
     
-    <category term="HTB" scheme="http://example.com/categories/CTF/HTB/"/>
+    <category term="HTB" scheme="https://www.zpast0r.com/categories/CTF/HTB/"/>
     
     
-    <category term="HTB-Synced" scheme="http://example.com/tags/HTB-Synced/"/>
+    <category term="HTB-Synced" scheme="https://www.zpast0r.com/tags/HTB-Synced/"/>
     
   </entry>
   
   <entry>
     <title>HTB-Preignition</title>
-    <link href="http://example.com/HTB-Preignition.html"/>
-    <id>http://example.com/HTB-Preignition.html</id>
+    <link href="https://www.zpast0r.com/HTB-Preignition.html"/>
+    <id>https://www.zpast0r.com/HTB-Preignition.html</id>
     <published>2023-07-06T02:08:52.505Z</published>
     <updated>2023-07-06T08:15:19.192Z</updated>
     
@@ -122,19 +122,19 @@
     
     
     
-    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
+    <category term="CTF" scheme="https://www.zpast0r.com/categories/CTF/"/>
     
-    <category term="HTB" scheme="http://example.com/categories/CTF/HTB/"/>
+    <category term="HTB" scheme="https://www.zpast0r.com/categories/CTF/HTB/"/>
     
     
-    <category term="HTB-Preignition" scheme="http://example.com/tags/HTB-Preignition/"/>
+    <category term="HTB-Preignition" scheme="https://www.zpast0r.com/tags/HTB-Preignition/"/>
     
   </entry>
   
   <entry>
     <title>HTB-Funnel</title>
-    <link href="http://example.com/HTB-PennyWorth.html"/>
-    <id>http://example.com/HTB-PennyWorth.html</id>
+    <link href="https://www.zpast0r.com/HTB-PennyWorth.html"/>
+    <id>https://www.zpast0r.com/HTB-PennyWorth.html</id>
     <published>2023-07-06T02:08:52.502Z</published>
     <updated>2023-07-06T08:21:40.319Z</updated>
     
@@ -145,19 +145,19 @@
     
     
     
-    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
+    <category term="CTF" scheme="https://www.zpast0r.com/categories/CTF/"/>
     
-    <category term="HTB" scheme="http://example.com/categories/CTF/HTB/"/>
+    <category term="HTB" scheme="https://www.zpast0r.com/categories/CTF/HTB/"/>
     
     
-    <category term="HTB-Funnel" scheme="http://example.com/tags/HTB-Funnel/"/>
+    <category term="HTB-Funnel" scheme="https://www.zpast0r.com/tags/HTB-Funnel/"/>
     
   </entry>
   
   <entry>
     <title>HTB-Netmon</title>
-    <link href="http://example.com/HTB-Netmon.html"/>
-    <id>http://example.com/HTB-Netmon.html</id>
+    <link href="https://www.zpast0r.com/HTB-Netmon.html"/>
+    <id>https://www.zpast0r.com/HTB-Netmon.html</id>
     <published>2023-07-06T02:08:52.500Z</published>
     <updated>2023-07-06T08:15:01.667Z</updated>
     
@@ -168,19 +168,19 @@
     
     
     
-    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
+    <category term="CTF" scheme="https://www.zpast0r.com/categories/CTF/"/>
     
-    <category term="HTB" scheme="http://example.com/categories/CTF/HTB/"/>
+    <category term="HTB" scheme="https://www.zpast0r.com/categories/CTF/HTB/"/>
     
     
-    <category term="HTB-Netmon" scheme="http://example.com/tags/HTB-Netmon/"/>
+    <category term="HTB-Netmon" scheme="https://www.zpast0r.com/tags/HTB-Netmon/"/>
     
   </entry>
   
   <entry>
     <title>HTB-Mongod</title>
-    <link href="http://example.com/HTB-Mongod.html"/>
-    <id>http://example.com/HTB-Mongod.html</id>
+    <link href="https://www.zpast0r.com/HTB-Mongod.html"/>
+    <id>https://www.zpast0r.com/HTB-Mongod.html</id>
     <published>2023-07-06T02:08:52.499Z</published>
     <updated>2023-07-06T08:21:54.715Z</updated>
     
@@ -191,19 +191,19 @@
     
     
     
-    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
+    <category term="CTF" scheme="https://www.zpast0r.com/categories/CTF/"/>
     
-    <category term="HTB" scheme="http://example.com/categories/CTF/HTB/"/>
+    <category term="HTB" scheme="https://www.zpast0r.com/categories/CTF/HTB/"/>
     
     
-    <category term="HTB-Mongod" scheme="http://example.com/tags/HTB-Mongod/"/>
+    <category term="HTB-Mongod" scheme="https://www.zpast0r.com/tags/HTB-Mongod/"/>
     
   </entry>
   
   <entry>
     <title>HTB-Markup</title>
-    <link href="http://example.com/HTB-Markup.html"/>
-    <id>http://example.com/HTB-Markup.html</id>
+    <link href="https://www.zpast0r.com/HTB-Markup.html"/>
+    <id>https://www.zpast0r.com/HTB-Markup.html</id>
     <published>2023-07-06T02:08:52.497Z</published>
     <updated>2023-07-06T08:14:51.862Z</updated>
     
@@ -214,19 +214,19 @@
     
     
     
-    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
+    <category term="CTF" scheme="https://www.zpast0r.com/categories/CTF/"/>
     
-    <category term="HTB" scheme="http://example.com/categories/CTF/HTB/"/>
+    <category term="HTB" scheme="https://www.zpast0r.com/categories/CTF/HTB/"/>
     
     
-    <category term="HTB-Markup" scheme="http://example.com/tags/HTB-Markup/"/>
+    <category term="HTB-Markup" scheme="https://www.zpast0r.com/tags/HTB-Markup/"/>
     
   </entry>
   
   <entry>
     <title>HTB-Included</title>
-    <link href="http://example.com/HTB-Included.html"/>
-    <id>http://example.com/HTB-Included.html</id>
+    <link href="https://www.zpast0r.com/HTB-Included.html"/>
+    <id>https://www.zpast0r.com/HTB-Included.html</id>
     <published>2023-07-06T02:08:52.495Z</published>
     <updated>2023-07-06T08:14:37.805Z</updated>
     
@@ -237,19 +237,19 @@
     
     
     
-    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
+    <category term="CTF" scheme="https://www.zpast0r.com/categories/CTF/"/>
     
-    <category term="HTB" scheme="http://example.com/categories/CTF/HTB/"/>
+    <category term="HTB" scheme="https://www.zpast0r.com/categories/CTF/HTB/"/>
     
     
-    <category term="HTB-Included" scheme="http://example.com/tags/HTB-Included/"/>
+    <category term="HTB-Included" scheme="https://www.zpast0r.com/tags/HTB-Included/"/>
     
   </entry>
   
   <entry>
     <title>HTB-Ignition</title>
-    <link href="http://example.com/HTB-Ignition.html"/>
-    <id>http://example.com/HTB-Ignition.html</id>
+    <link href="https://www.zpast0r.com/HTB-Ignition.html"/>
+    <id>https://www.zpast0r.com/HTB-Ignition.html</id>
     <published>2023-07-06T02:08:52.493Z</published>
     <updated>2023-07-06T08:22:27.605Z</updated>
     
@@ -260,19 +260,19 @@
     
     
     
-    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
+    <category term="CTF" scheme="https://www.zpast0r.com/categories/CTF/"/>
     
-    <category term="HTB" scheme="http://example.com/categories/CTF/HTB/"/>
+    <category term="HTB" scheme="https://www.zpast0r.com/categories/CTF/HTB/"/>
     
     
-    <category term="HTB-Ignition" scheme="http://example.com/tags/HTB-Ignition/"/>
+    <category term="HTB-Ignition" scheme="https://www.zpast0r.com/tags/HTB-Ignition/"/>
     
   </entry>
   
   <entry>
     <title>HTB-Heist</title>
-    <link href="http://example.com/HTB-Heist.html"/>
-    <id>http://example.com/HTB-Heist.html</id>
+    <link href="https://www.zpast0r.com/HTB-Heist.html"/>
+    <id>https://www.zpast0r.com/HTB-Heist.html</id>
     <published>2023-07-06T02:08:52.491Z</published>
     <updated>2023-07-06T08:14:17.281Z</updated>
     
@@ -283,19 +283,19 @@
     
     
     
-    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
+    <category term="CTF" scheme="https://www.zpast0r.com/categories/CTF/"/>
     
-    <category term="HTB" scheme="http://example.com/categories/CTF/HTB/"/>
+    <category term="HTB" scheme="https://www.zpast0r.com/categories/CTF/HTB/"/>
     
     
-    <category term="HTB-Heist" scheme="http://example.com/tags/HTB-Heist/"/>
+    <category term="HTB-Heist" scheme="https://www.zpast0r.com/tags/HTB-Heist/"/>
     
   </entry>
   
   <entry>
     <title>HTB-Funnel</title>
-    <link href="http://example.com/HTB-Funnel.html"/>
-    <id>http://example.com/HTB-Funnel.html</id>
+    <link href="https://www.zpast0r.com/HTB-Funnel.html"/>
+    <id>https://www.zpast0r.com/HTB-Funnel.html</id>
     <published>2023-07-06T02:08:52.489Z</published>
     <updated>2023-07-06T08:14:07.919Z</updated>
     
@@ -306,19 +306,19 @@
     
     
     
-    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
+    <category term="CTF" scheme="https://www.zpast0r.com/categories/CTF/"/>
     
-    <category term="HTB" scheme="http://example.com/categories/CTF/HTB/"/>
+    <category term="HTB" scheme="https://www.zpast0r.com/categories/CTF/HTB/"/>
     
     
-    <category term="HTB-Funnel" scheme="http://example.com/tags/HTB-Funnel/"/>
+    <category term="HTB-Funnel" scheme="https://www.zpast0r.com/tags/HTB-Funnel/"/>
     
   </entry>
   
   <entry>
     <title>HTB-Explosion</title>
-    <link href="http://example.com/HTB-Explosion.html"/>
-    <id>http://example.com/HTB-Explosion.html</id>
+    <link href="https://www.zpast0r.com/HTB-Explosion.html"/>
+    <id>https://www.zpast0r.com/HTB-Explosion.html</id>
     <published>2023-07-06T02:08:52.487Z</published>
     <updated>2023-07-06T08:13:56.542Z</updated>
     
@@ -329,19 +329,19 @@
     
     
     
-    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
+    <category term="CTF" scheme="https://www.zpast0r.com/categories/CTF/"/>
     
-    <category term="HTB" scheme="http://example.com/categories/CTF/HTB/"/>
+    <category term="HTB" scheme="https://www.zpast0r.com/categories/CTF/HTB/"/>
     
     
-    <category term="HTB-Explosion" scheme="http://example.com/tags/HTB-Explosion/"/>
+    <category term="HTB-Explosion" scheme="https://www.zpast0r.com/tags/HTB-Explosion/"/>
     
   </entry>
   
   <entry>
     <title>HTB-Emdee five for life</title>
-    <link href="http://example.com/HTB-Emdee%20five%20for%20life.html"/>
-    <id>http://example.com/HTB-Emdee%20five%20for%20life.html</id>
+    <link href="https://www.zpast0r.com/HTB-Emdee%20five%20for%20life.html"/>
+    <id>https://www.zpast0r.com/HTB-Emdee%20five%20for%20life.html</id>
     <published>2023-07-06T02:08:52.484Z</published>
     <updated>2023-07-06T08:03:06.122Z</updated>
     
@@ -352,19 +352,19 @@
     
     
     
-    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
+    <category term="CTF" scheme="https://www.zpast0r.com/categories/CTF/"/>
     
-    <category term="HTB" scheme="http://example.com/categories/CTF/HTB/"/>
+    <category term="HTB" scheme="https://www.zpast0r.com/categories/CTF/HTB/"/>
     
     
-    <category term="HTB-Emdee five for life" scheme="http://example.com/tags/HTB-Emdee-five-for-life/"/>
+    <category term="HTB-Emdee five for life" scheme="https://www.zpast0r.com/tags/HTB-Emdee-five-for-life/"/>
     
   </entry>
   
   <entry>
     <title>HTB-Bike</title>
-    <link href="http://example.com/HTB-Bike.html"/>
-    <id>http://example.com/HTB-Bike.html</id>
+    <link href="https://www.zpast0r.com/HTB-Bike.html"/>
+    <id>https://www.zpast0r.com/HTB-Bike.html</id>
     <published>2023-07-06T02:08:52.481Z</published>
     <updated>2023-07-06T08:22:36.959Z</updated>
     
@@ -375,19 +375,19 @@
     
     
     
-    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
+    <category term="CTF" scheme="https://www.zpast0r.com/categories/CTF/"/>
     
-    <category term="HTB" scheme="http://example.com/categories/CTF/HTB/"/>
+    <category term="HTB" scheme="https://www.zpast0r.com/categories/CTF/HTB/"/>
     
     
-    <category term="HTB-Bike" scheme="http://example.com/tags/HTB-Bike/"/>
+    <category term="HTB-Bike" scheme="https://www.zpast0r.com/tags/HTB-Bike/"/>
     
   </entry>
   
   <entry>
     <title>HTB-Base</title>
-    <link href="http://example.com/HTB-Base.html"/>
-    <id>http://example.com/HTB-Base.html</id>
+    <link href="https://www.zpast0r.com/HTB-Base.html"/>
+    <id>https://www.zpast0r.com/HTB-Base.html</id>
     <published>2023-07-06T02:08:52.479Z</published>
     <updated>2023-07-06T08:02:52.432Z</updated>
     
@@ -398,19 +398,19 @@
     
     
     
-    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
+    <category term="CTF" scheme="https://www.zpast0r.com/categories/CTF/"/>
     
-    <category term="HTB" scheme="http://example.com/categories/CTF/HTB/"/>
+    <category term="HTB" scheme="https://www.zpast0r.com/categories/CTF/HTB/"/>
     
     
-    <category term="HTB-Base" scheme="http://example.com/tags/HTB-Base/"/>
+    <category term="HTB-Base" scheme="https://www.zpast0r.com/tags/HTB-Base/"/>
     
   </entry>
   
   <entry>
     <title>HTB-Pilgrimage</title>
-    <link href="http://example.com/HTB-Pilgrimage.html"/>
-    <id>http://example.com/HTB-Pilgrimage.html</id>
+    <link href="https://www.zpast0r.com/HTB-Pilgrimage.html"/>
+    <id>https://www.zpast0r.com/HTB-Pilgrimage.html</id>
     <published>2023-07-06T02:08:09.089Z</published>
     <updated>2023-07-14T03:26:42.320Z</updated>
     
@@ -421,19 +421,19 @@
     
     
     
-    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
+    <category term="CTF" scheme="https://www.zpast0r.com/categories/CTF/"/>
     
-    <category term="HTB" scheme="http://example.com/categories/CTF/HTB/"/>
+    <category term="HTB" scheme="https://www.zpast0r.com/categories/CTF/HTB/"/>
     
     
-    <category term="Open Beat SeasonII" scheme="http://example.com/tags/Open-Beat-SeasonII/"/>
+    <category term="Open Beat SeasonII" scheme="https://www.zpast0r.com/tags/Open-Beat-SeasonII/"/>
     
   </entry>
   
   <entry>
     <title>HTB-ArcheType</title>
-    <link href="http://example.com/HTB-ArcheType.html"/>
-    <id>http://example.com/HTB-ArcheType.html</id>
+    <link href="https://www.zpast0r.com/HTB-ArcheType.html"/>
+    <id>https://www.zpast0r.com/HTB-ArcheType.html</id>
     <published>2023-06-05T05:58:11.092Z</published>
     <updated>2023-07-06T08:02:53.510Z</updated>
     
@@ -444,12 +444,12 @@
     
     
     
-    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
+    <category term="CTF" scheme="https://www.zpast0r.com/categories/CTF/"/>
     
-    <category term="HTB" scheme="http://example.com/categories/CTF/HTB/"/>
+    <category term="HTB" scheme="https://www.zpast0r.com/categories/CTF/HTB/"/>
     
     
-    <category term="HTB-ArcheType" scheme="http://example.com/tags/HTB-ArcheType/"/>
+    <category term="HTB-ArcheType" scheme="https://www.zpast0r.com/tags/HTB-ArcheType/"/>
     
   </entry>
   
