@@ -243,14 +243,14 @@
   </url>
   
   <url>
-    <loc>http://example.com/tags/HTB-Bike/</loc>
+    <loc>http://example.com/tags/HTB-Base/</loc>
     <lastmod>2023-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://example.com/tags/HTB-Base/</loc>
+    <loc>http://example.com/tags/HTB-Bike/</loc>
     <lastmod>2023-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -271,13 +271,6 @@
   </url>
   
   <url>
-    <loc>http://example.com/tags/HTB-Funnel/</loc>
-    <lastmod>2023-07-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://example.com/tags/HTB-Heist/</loc>
     <lastmod>2023-07-14</lastmod>
     <changefreq>weekly</changefreq>
@@ -285,7 +278,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/tags/HTB-Included/</loc>
+    <loc>http://example.com/tags/HTB-Funnel/</loc>
     <lastmod>2023-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -299,14 +292,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/tags/HTB-Markup/</loc>
-    <lastmod>2023-07-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://example.com/tags/HTB-Netmon/</loc>
+    <loc>http://example.com/tags/HTB-Included/</loc>
     <lastmod>2023-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -320,7 +306,14 @@
   </url>
   
   <url>
-    <loc>http://example.com/tags/HTB-Preignition/</loc>
+    <loc>http://example.com/tags/HTB-Netmon/</loc>
+    <lastmod>2023-07-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/tags/HTB-Markup/</loc>
     <lastmod>2023-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -328,6 +321,20 @@
   
   <url>
     <loc>http://example.com/tags/Open-Beat-SeasonII/</loc>
+    <lastmod>2023-07-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/tags/HTB-Preignition/</loc>
+    <lastmod>2023-07-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/tags/HTB-Vaccine/</loc>
     <lastmod>2023-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -342,13 +349,6 @@
   
   <url>
     <loc>http://example.com/tags/HTB-Hactics/</loc>
-    <lastmod>2023-07-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://example.com/tags/HTB-Vaccine/</loc>
     <lastmod>2023-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
