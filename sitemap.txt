@@ -1,5 +1,5 @@
-http://example.com/2023/07/06/HTB-Pilgrimage/
 http://example.com/2023/07/14/HTB-Sau/
+http://example.com/2023/07/06/HTB-Pilgrimage/
 http://example.com/2023/07/06/HTB-Bike/
 http://example.com/2023/07/06/HTB-Ignition/
 http://example.com/2023/07/06/HTB-Mongod/
@@ -23,10 +23,10 @@ http://example.com/link/index.html
 http://example.com/categories/index.html
 http://example.com/tags/index.html
 http://example.com/
-http://example.com/tags/HTB-ArcheType/
-http://example.com/tags/HTB-Emdee-five-for-life/
 http://example.com/tags/HTB-Base/
+http://example.com/tags/HTB-ArcheType/
 http://example.com/tags/HTB-Bike/
+http://example.com/tags/HTB-Emdee-five-for-life/
 http://example.com/tags/HTB-Explosion/
 http://example.com/tags/HTB-Funnel/
 http://example.com/tags/HTB-Heist/
@@ -38,8 +38,7 @@ http://example.com/tags/HTB-Netmon/
 http://example.com/tags/HTB-Preignition/
 http://example.com/tags/Open-Beat-SeasonII/
 http://example.com/tags/HTB-Synced/
-http://example.com/tags/HTB-Hactics/
-http://example.com/tags/Open-Beat-SeasonnII/
 http://example.com/tags/HTB-Vaccine/
+http://example.com/tags/HTB-Hactics/
 http://example.com/categories/CTF/
 http://example.com/categories/CTF/HTB/
