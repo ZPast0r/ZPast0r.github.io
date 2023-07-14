@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://example.com/baidu_verify_codeva-3h5Cao0oAl.html</loc>
+    <loc>http://example.com/baidu_verify_codeva-YSMDSBb0g2.html</loc>
     
     <lastmod>2023-07-14</lastmod>
     
@@ -243,14 +243,14 @@
   </url>
   
   <url>
-    <loc>http://example.com/tags/HTB-Base/</loc>
+    <loc>http://example.com/tags/HTB-Bike/</loc>
     <lastmod>2023-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://example.com/tags/HTB-Bike/</loc>
+    <loc>http://example.com/tags/HTB-Base/</loc>
     <lastmod>2023-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -264,14 +264,14 @@
   </url>
   
   <url>
-    <loc>http://example.com/tags/HTB-Funnel/</loc>
+    <loc>http://example.com/tags/HTB-Explosion/</loc>
     <lastmod>2023-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://example.com/tags/HTB-Explosion/</loc>
+    <loc>http://example.com/tags/HTB-Funnel/</loc>
     <lastmod>2023-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -320,14 +320,14 @@
   </url>
   
   <url>
-    <loc>http://example.com/tags/Open-Beat-SeasonII/</loc>
+    <loc>http://example.com/tags/HTB-Preignition/</loc>
     <lastmod>2023-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://example.com/tags/HTB-Preignition/</loc>
+    <loc>http://example.com/tags/Open-Beat-SeasonII/</loc>
     <lastmod>2023-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -341,14 +341,14 @@
   </url>
   
   <url>
-    <loc>http://example.com/tags/HTB-Vaccine/</loc>
+    <loc>http://example.com/tags/HTB-Hactics/</loc>
     <lastmod>2023-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://example.com/tags/HTB-Hactics/</loc>
+    <loc>http://example.com/tags/HTB-Vaccine/</loc>
     <lastmod>2023-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
