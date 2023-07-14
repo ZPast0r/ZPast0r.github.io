@@ -18,8 +18,8 @@
   
   <entry>
     <title>HTB-Sau</title>
-    <link href="http://example.com/2023/07/14/HTB-Sau/"/>
-    <id>http://example.com/2023/07/14/HTB-Sau/</id>
+    <link href="http://example.com/HTB-Sau.html"/>
+    <id>http://example.com/HTB-Sau.html</id>
     <published>2023-07-14T03:15:34.105Z</published>
     <updated>2023-07-14T03:36:04.306Z</updated>
     
@@ -41,8 +41,8 @@
   
   <entry>
     <title>HTB-Vaccine</title>
-    <link href="http://example.com/2023/07/06/HTB-Vaccine/"/>
-    <id>http://example.com/2023/07/06/HTB-Vaccine/</id>
+    <link href="http://example.com/HTB-Vaccine.html"/>
+    <id>http://example.com/HTB-Vaccine.html</id>
     <published>2023-07-06T02:08:52.512Z</published>
     <updated>2023-07-06T08:21:30.099Z</updated>
     
@@ -64,8 +64,8 @@
   
   <entry>
     <title>HTB-Hactics</title>
-    <link href="http://example.com/2023/07/06/HTB-Tactics/"/>
-    <id>http://example.com/2023/07/06/HTB-Tactics/</id>
+    <link href="http://example.com/HTB-Tactics.html"/>
+    <id>http://example.com/HTB-Tactics.html</id>
     <published>2023-07-06T02:08:52.510Z</published>
     <updated>2023-07-06T08:15:33.772Z</updated>
     
@@ -87,8 +87,8 @@
   
   <entry>
     <title>HTB-Synced</title>
-    <link href="http://example.com/2023/07/06/HTB-Synced/"/>
-    <id>http://example.com/2023/07/06/HTB-Synced/</id>
+    <link href="http://example.com/HTB-Synced.html"/>
+    <id>http://example.com/HTB-Synced.html</id>
     <published>2023-07-06T02:08:52.507Z</published>
     <updated>2023-07-06T08:15:28.081Z</updated>
     
@@ -110,8 +110,8 @@
   
   <entry>
     <title>HTB-Preignition</title>
-    <link href="http://example.com/2023/07/06/HTB-Preignition/"/>
-    <id>http://example.com/2023/07/06/HTB-Preignition/</id>
+    <link href="http://example.com/HTB-Preignition.html"/>
+    <id>http://example.com/HTB-Preignition.html</id>
     <published>2023-07-06T02:08:52.505Z</published>
     <updated>2023-07-06T08:15:19.192Z</updated>
     
@@ -133,8 +133,8 @@
   
   <entry>
     <title>HTB-Funnel</title>
-    <link href="http://example.com/2023/07/06/HTB-PennyWorth/"/>
-    <id>http://example.com/2023/07/06/HTB-PennyWorth/</id>
+    <link href="http://example.com/HTB-PennyWorth.html"/>
+    <id>http://example.com/HTB-PennyWorth.html</id>
     <published>2023-07-06T02:08:52.502Z</published>
     <updated>2023-07-06T08:21:40.319Z</updated>
     
@@ -156,8 +156,8 @@
   
   <entry>
     <title>HTB-Netmon</title>
-    <link href="http://example.com/2023/07/06/HTB-Netmon/"/>
-    <id>http://example.com/2023/07/06/HTB-Netmon/</id>
+    <link href="http://example.com/HTB-Netmon.html"/>
+    <id>http://example.com/HTB-Netmon.html</id>
     <published>2023-07-06T02:08:52.500Z</published>
     <updated>2023-07-06T08:15:01.667Z</updated>
     
@@ -179,8 +179,8 @@
   
   <entry>
     <title>HTB-Mongod</title>
-    <link href="http://example.com/2023/07/06/HTB-Mongod/"/>
-    <id>http://example.com/2023/07/06/HTB-Mongod/</id>
+    <link href="http://example.com/HTB-Mongod.html"/>
+    <id>http://example.com/HTB-Mongod.html</id>
     <published>2023-07-06T02:08:52.499Z</published>
     <updated>2023-07-06T08:21:54.715Z</updated>
     
@@ -202,8 +202,8 @@
   
   <entry>
     <title>HTB-Markup</title>
-    <link href="http://example.com/2023/07/06/HTB-Markup/"/>
-    <id>http://example.com/2023/07/06/HTB-Markup/</id>
+    <link href="http://example.com/HTB-Markup.html"/>
+    <id>http://example.com/HTB-Markup.html</id>
     <published>2023-07-06T02:08:52.497Z</published>
     <updated>2023-07-06T08:14:51.862Z</updated>
     
@@ -225,8 +225,8 @@
   
   <entry>
     <title>HTB-Included</title>
-    <link href="http://example.com/2023/07/06/HTB-Included/"/>
-    <id>http://example.com/2023/07/06/HTB-Included/</id>
+    <link href="http://example.com/HTB-Included.html"/>
+    <id>http://example.com/HTB-Included.html</id>
     <published>2023-07-06T02:08:52.495Z</published>
     <updated>2023-07-06T08:14:37.805Z</updated>
     
@@ -248,8 +248,8 @@
   
   <entry>
     <title>HTB-Ignition</title>
-    <link href="http://example.com/2023/07/06/HTB-Ignition/"/>
-    <id>http://example.com/2023/07/06/HTB-Ignition/</id>
+    <link href="http://example.com/HTB-Ignition.html"/>
+    <id>http://example.com/HTB-Ignition.html</id>
     <published>2023-07-06T02:08:52.493Z</published>
     <updated>2023-07-06T08:22:27.605Z</updated>
     
@@ -271,8 +271,8 @@
   
   <entry>
     <title>HTB-Heist</title>
-    <link href="http://example.com/2023/07/06/HTB-Heist/"/>
-    <id>http://example.com/2023/07/06/HTB-Heist/</id>
+    <link href="http://example.com/HTB-Heist.html"/>
+    <id>http://example.com/HTB-Heist.html</id>
     <published>2023-07-06T02:08:52.491Z</published>
     <updated>2023-07-06T08:14:17.281Z</updated>
     
@@ -294,8 +294,8 @@
   
   <entry>
     <title>HTB-Funnel</title>
-    <link href="http://example.com/2023/07/06/HTB-Funnel/"/>
-    <id>http://example.com/2023/07/06/HTB-Funnel/</id>
+    <link href="http://example.com/HTB-Funnel.html"/>
+    <id>http://example.com/HTB-Funnel.html</id>
     <published>2023-07-06T02:08:52.489Z</published>
     <updated>2023-07-06T08:14:07.919Z</updated>
     
@@ -317,8 +317,8 @@
   
   <entry>
     <title>HTB-Explosion</title>
-    <link href="http://example.com/2023/07/06/HTB-Explosion/"/>
-    <id>http://example.com/2023/07/06/HTB-Explosion/</id>
+    <link href="http://example.com/HTB-Explosion.html"/>
+    <id>http://example.com/HTB-Explosion.html</id>
     <published>2023-07-06T02:08:52.487Z</published>
     <updated>2023-07-06T08:13:56.542Z</updated>
     
@@ -340,8 +340,8 @@
   
   <entry>
     <title>HTB-Emdee five for life</title>
-    <link href="http://example.com/2023/07/06/HTB-Emdee%20five%20for%20life/"/>
-    <id>http://example.com/2023/07/06/HTB-Emdee%20five%20for%20life/</id>
+    <link href="http://example.com/HTB-Emdee%20five%20for%20life.html"/>
+    <id>http://example.com/HTB-Emdee%20five%20for%20life.html</id>
     <published>2023-07-06T02:08:52.484Z</published>
     <updated>2023-07-06T08:03:06.122Z</updated>
     
@@ -363,8 +363,8 @@
   
   <entry>
     <title>HTB-Bike</title>
-    <link href="http://example.com/2023/07/06/HTB-Bike/"/>
-    <id>http://example.com/2023/07/06/HTB-Bike/</id>
+    <link href="http://example.com/HTB-Bike.html"/>
+    <id>http://example.com/HTB-Bike.html</id>
     <published>2023-07-06T02:08:52.481Z</published>
     <updated>2023-07-06T08:22:36.959Z</updated>
     
@@ -386,8 +386,8 @@
   
   <entry>
     <title>HTB-Base</title>
-    <link href="http://example.com/2023/07/06/HTB-Base/"/>
-    <id>http://example.com/2023/07/06/HTB-Base/</id>
+    <link href="http://example.com/HTB-Base.html"/>
+    <id>http://example.com/HTB-Base.html</id>
     <published>2023-07-06T02:08:52.479Z</published>
     <updated>2023-07-06T08:02:52.432Z</updated>
     
@@ -409,8 +409,8 @@
   
   <entry>
     <title>HTB-Pilgrimage</title>
-    <link href="http://example.com/2023/07/06/HTB-Pilgrimage/"/>
-    <id>http://example.com/2023/07/06/HTB-Pilgrimage/</id>
+    <link href="http://example.com/HTB-Pilgrimage.html"/>
+    <id>http://example.com/HTB-Pilgrimage.html</id>
     <published>2023-07-06T02:08:09.089Z</published>
     <updated>2023-07-14T03:26:42.320Z</updated>
     
@@ -432,8 +432,8 @@
   
   <entry>
     <title>HTB-ArcheType</title>
-    <link href="http://example.com/2023/06/05/HTB-ArcheType/"/>
-    <id>http://example.com/2023/06/05/HTB-ArcheType/</id>
+    <link href="http://example.com/HTB-ArcheType.html"/>
+    <id>http://example.com/HTB-ArcheType.html</id>
     <published>2023-06-05T05:58:11.092Z</published>
     <updated>2023-07-06T08:02:53.510Z</updated>
     

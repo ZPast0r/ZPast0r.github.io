@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://example.com/2023/07/14/HTB-Sau/</loc>
+    <loc>http://example.com/baidu_verify_codeva-3h5Cao0oAl.html</loc>
     
     <lastmod>2023-07-14</lastmod>
     
@@ -11,7 +11,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/2023/07/06/HTB-Pilgrimage/</loc>
+    <loc>http://example.com/HTB-Sau.html</loc>
     
     <lastmod>2023-07-14</lastmod>
     
@@ -20,7 +20,16 @@
   </url>
   
   <url>
-    <loc>http://example.com/2023/07/06/HTB-Bike/</loc>
+    <loc>http://example.com/HTB-Pilgrimage.html</loc>
+    
+    <lastmod>2023-07-14</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/HTB-Bike.html</loc>
     
     <lastmod>2023-07-06</lastmod>
     
@@ -29,7 +38,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/2023/07/06/HTB-Ignition/</loc>
+    <loc>http://example.com/HTB-Ignition.html</loc>
     
     <lastmod>2023-07-06</lastmod>
     
@@ -38,7 +47,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/2023/07/06/HTB-Mongod/</loc>
+    <loc>http://example.com/HTB-Mongod.html</loc>
     
     <lastmod>2023-07-06</lastmod>
     
@@ -47,7 +56,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/2023/07/06/HTB-PennyWorth/</loc>
+    <loc>http://example.com/HTB-PennyWorth.html</loc>
     
     <lastmod>2023-07-06</lastmod>
     
@@ -56,7 +65,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/2023/07/06/HTB-Vaccine/</loc>
+    <loc>http://example.com/HTB-Vaccine.html</loc>
     
     <lastmod>2023-07-06</lastmod>
     
@@ -65,7 +74,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/2023/07/06/HTB-Tactics/</loc>
+    <loc>http://example.com/HTB-Tactics.html</loc>
     
     <lastmod>2023-07-06</lastmod>
     
@@ -74,7 +83,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/2023/07/06/HTB-Synced/</loc>
+    <loc>http://example.com/HTB-Synced.html</loc>
     
     <lastmod>2023-07-06</lastmod>
     
@@ -83,7 +92,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/2023/07/06/HTB-Preignition/</loc>
+    <loc>http://example.com/HTB-Preignition.html</loc>
     
     <lastmod>2023-07-06</lastmod>
     
@@ -92,7 +101,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/2023/07/06/HTB-Netmon/</loc>
+    <loc>http://example.com/HTB-Netmon.html</loc>
     
     <lastmod>2023-07-06</lastmod>
     
@@ -101,7 +110,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/2023/07/06/HTB-Markup/</loc>
+    <loc>http://example.com/HTB-Markup.html</loc>
     
     <lastmod>2023-07-06</lastmod>
     
@@ -110,7 +119,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/2023/07/06/HTB-Included/</loc>
+    <loc>http://example.com/HTB-Included.html</loc>
     
     <lastmod>2023-07-06</lastmod>
     
@@ -119,7 +128,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/2023/07/06/HTB-Heist/</loc>
+    <loc>http://example.com/HTB-Heist.html</loc>
     
     <lastmod>2023-07-06</lastmod>
     
@@ -128,7 +137,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/2023/07/06/HTB-Funnel/</loc>
+    <loc>http://example.com/HTB-Funnel.html</loc>
     
     <lastmod>2023-07-06</lastmod>
     
@@ -137,7 +146,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/2023/07/06/HTB-Explosion/</loc>
+    <loc>http://example.com/HTB-Explosion.html</loc>
     
     <lastmod>2023-07-06</lastmod>
     
@@ -146,7 +155,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/2023/07/06/HTB-Emdee%20five%20for%20life/</loc>
+    <loc>http://example.com/HTB-Emdee%20five%20for%20life.html</loc>
     
     <lastmod>2023-07-06</lastmod>
     
@@ -155,7 +164,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/2023/06/05/HTB-ArcheType/</loc>
+    <loc>http://example.com/HTB-ArcheType.html</loc>
     
     <lastmod>2023-07-06</lastmod>
     
@@ -164,7 +173,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/2023/07/06/HTB-Base/</loc>
+    <loc>http://example.com/HTB-Base.html</loc>
     
     <lastmod>2023-07-06</lastmod>
     
@@ -248,14 +257,14 @@
   </url>
   
   <url>
-    <loc>http://example.com/tags/HTB-Funnel/</loc>
+    <loc>http://example.com/tags/HTB-Emdee-five-for-life/</loc>
     <lastmod>2023-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://example.com/tags/HTB-Emdee-five-for-life/</loc>
+    <loc>http://example.com/tags/HTB-Funnel/</loc>
     <lastmod>2023-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -276,14 +285,14 @@
   </url>
   
   <url>
-    <loc>http://example.com/tags/HTB-Ignition/</loc>
+    <loc>http://example.com/tags/HTB-Included/</loc>
     <lastmod>2023-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://example.com/tags/HTB-Included/</loc>
+    <loc>http://example.com/tags/HTB-Ignition/</loc>
     <lastmod>2023-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -297,14 +306,14 @@
   </url>
   
   <url>
-    <loc>http://example.com/tags/HTB-Mongod/</loc>
+    <loc>http://example.com/tags/HTB-Netmon/</loc>
     <lastmod>2023-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://example.com/tags/HTB-Netmon/</loc>
+    <loc>http://example.com/tags/HTB-Mongod/</loc>
     <lastmod>2023-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -332,14 +341,14 @@
   </url>
   
   <url>
-    <loc>http://example.com/tags/HTB-Hactics/</loc>
+    <loc>http://example.com/tags/HTB-Vaccine/</loc>
     <lastmod>2023-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://example.com/tags/HTB-Vaccine/</loc>
+    <loc>http://example.com/tags/HTB-Hactics/</loc>
     <lastmod>2023-07-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
