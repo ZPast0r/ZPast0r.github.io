@@ -6,7 +6,7 @@
   <link href="https://www.zpast0r.com/atom.xml" rel="self"/>
   
   <link href="https://www.zpast0r.com/"/>
-  <updated>2023-07-14T03:36:04.306Z</updated>
+  <updated>2023-08-16T02:41:01.007Z</updated>
   <id>https://www.zpast0r.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>HTB-Keeper</title>
+    <link href="https://www.zpast0r.com/HTB-Keeper.html"/>
+    <id>https://www.zpast0r.com/HTB-Keeper.html</id>
+    <published>2023-08-16T02:46:20.340Z</published>
+    <updated>2023-08-16T02:41:01.007Z</updated>
+    
+    <content type="html"><![CDATA[<h5 id="信息搜集"><a href="#信息搜集" class="headerlink" title="信息搜集"></a>信息搜集</h5><ul><li><p>端口扫描</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sV -sC -Pn 10.129.30.241</span><br></pre></td></tr></table></figure><p> <img src="https://s2.loli.net/2023/08/16/9ngdCP38Mi2j4eI.png" alt="image-20230814160617159"></p></li><li><p>访问80端口，在开源项目中找到默认用户名密码</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">10.129.64.6tickets.keeper.htb</span><br><span class="line">#默认用户名密码</span><br><span class="line">root</span><br><span class="line">password</span><br></pre></td></tr></table></figure><p><img src="https://s2.loli.net/2023/08/16/MxXfyoKCTqjFZSV.png" alt="image-20230814162150816"></p></li><li><p>在用户列表中发现新用户和默认密码</p><p><img src="https://s2.loli.net/2023/08/16/C8WyEZJLtUbiXPR.png" alt="image-20230814162257844"></p></li><li><p>尝试使用该用户登录ssh，直接登录成功了。。。。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh 10.129.64.6@lnorgaard</span><br></pre></td></tr></table></figure><p><img src="https://s2.loli.net/2023/08/16/tXb6YWqanfdjIS1.png" alt="image-20230814162403268"></p></li><li><p>得到user.txt</p><p><img src="https://s2.loli.net/2023/08/16/hNnRTQSofsprMt5.png" alt="image-20230814162441902"></p></li></ul><h5 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h5><ul><li><p>lnorgaard目录下有个RT30000的zip压缩包，直接解压得到dmp文件和kbdx文件</p><p><img src="https://s2.loli.net/2023/08/16/xlWd1zYwMhFS6Dg.png" alt="image-20230815145154548"></p></li><li><p>经过搜索，kbdx文件是keepass软件的文件，使用keepass2john得到hash，hashcat和john没有破解成功</p></li><li><p>网上搜索keepass相关漏洞，存在CVE-2023-32784漏洞，漏洞利用链接如下</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#多尝试几个POC，有的运行会异常报错</span><br><span class="line">https://github.com/CMEPW/keepass-dump-masterkey</span><br></pre></td></tr></table></figure></li><li><p>将漏洞利用文件出传输到靶机上</p></li><li><p>运行POC文件</p><p><img src="https://s2.loli.net/2023/08/16/8RScLOI4WrA3gip.png" alt="image-20230815151720967"></p></li><li><p>得到的密码不能作为keepass的主密码使用，在浏览器进行搜索，出现一个甜品名字</p><p><img src="https://s2.loli.net/2023/08/16/ArejCK6yhBFuq9z.png" alt="image-20230815152741574"></p></li><li><p>尝试甜品名字作为主密码，（连接不成功可以重新解压文件）</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kpcli --kdb=passcodes.kdbx</span><br><span class="line">rødgrød med fløde</span><br></pre></td></tr></table></figure><p><img src="https://s2.loli.net/2023/08/16/Yx1D6hc7d9SbCPn.png" alt="image-20230815172558567"></p></li><li><p>得到一个PUTTY的文件</p><p><img src="https://s2.loli.net/2023/08/16/5HC9JOLA3UPwSQr.png" alt="image-20230815173320874"></p></li><li><p>将putty转化为ssh私钥</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#安装putty-tools</span><br><span class="line">sudo apt-get install putty-tools</span><br><span class="line">#将ppk文件转化为ssh私钥</span><br><span class="line">puttygen putty.ppk -O private-openssh -o ./id_rsa</span><br><span class="line">#赋予权限</span><br><span class="line">chmod +x 600</span><br><span class="line">#使用私钥登录root用户</span><br><span class="line">ssh root@10.129.64.69 -i id_rsa</span><br></pre></td></tr></table></figure><p><img src="https://s2.loli.net/2023/08/16/KnNj3oO6DFSMt4k.png" alt="image-20230816103905232"></p></li></ul>]]></content>
+    
+    
+    <summary type="html">CVE-2023-32784</summary>
+    
+    
+    
+    <category term="CTF" scheme="https://www.zpast0r.com/categories/CTF/"/>
+    
+    <category term="HTB" scheme="https://www.zpast0r.com/categories/CTF/HTB/"/>
+    
+    
+    <category term="Open Beat SeasonII" scheme="https://www.zpast0r.com/tags/Open-Beat-SeasonII/"/>
+    
+  </entry>
   
   <entry>
     <title>HTB-Sau</title>
