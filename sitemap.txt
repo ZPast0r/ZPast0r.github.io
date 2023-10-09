@@ -1,3 +1,4 @@
+https://www.zpast0r.com/Analytics.html
 https://www.zpast0r.com/HTB-Keeper.html
 https://www.zpast0r.com/HTB-Sau.html
 https://www.zpast0r.com/HTB-Pilgrimage.html
@@ -24,11 +25,12 @@ https://www.zpast0r.com/link/index.html
 https://www.zpast0r.com/categories/index.html
 https://www.zpast0r.com/tags/index.html
 https://www.zpast0r.com/
+https://www.zpast0r.com/tags/Open-Beat-SeasonIII/
 https://www.zpast0r.com/tags/HTB-ArcheType/
-https://www.zpast0r.com/tags/HTB-Emdee-five-for-life/
 https://www.zpast0r.com/tags/HTB-Base/
 https://www.zpast0r.com/tags/HTB-Bike/
 https://www.zpast0r.com/tags/HTB-Explosion/
+https://www.zpast0r.com/tags/HTB-Emdee-five-for-life/
 https://www.zpast0r.com/tags/HTB-Funnel/
 https://www.zpast0r.com/tags/HTB-Heist/
 https://www.zpast0r.com/tags/HTB-Ignition/

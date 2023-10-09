@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.zpast0r.com/Analytics.html</loc>
+    
+    <lastmod>2023-10-09</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.zpast0r.com/HTB-Keeper.html</loc>
     
     <lastmod>2023-08-16</lastmod>
@@ -229,127 +238,134 @@
 
   <url>
     <loc>https://www.zpast0r.com/</loc>
-    <lastmod>2023-08-16</lastmod>
+    <lastmod>2023-10-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   
   <url>
-    <loc>https://www.zpast0r.com/tags/HTB-ArcheType/</loc>
-    <lastmod>2023-08-16</lastmod>
+    <loc>https://www.zpast0r.com/tags/Open-Beat-SeasonIII/</loc>
+    <lastmod>2023-10-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.zpast0r.com/tags/HTB-Emdee-five-for-life/</loc>
-    <lastmod>2023-08-16</lastmod>
+    <loc>https://www.zpast0r.com/tags/HTB-ArcheType/</loc>
+    <lastmod>2023-10-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.zpast0r.com/tags/HTB-Base/</loc>
-    <lastmod>2023-08-16</lastmod>
+    <lastmod>2023-10-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.zpast0r.com/tags/HTB-Bike/</loc>
-    <lastmod>2023-08-16</lastmod>
+    <lastmod>2023-10-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.zpast0r.com/tags/HTB-Explosion/</loc>
-    <lastmod>2023-08-16</lastmod>
+    <lastmod>2023-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.zpast0r.com/tags/HTB-Emdee-five-for-life/</loc>
+    <lastmod>2023-10-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.zpast0r.com/tags/HTB-Funnel/</loc>
-    <lastmod>2023-08-16</lastmod>
+    <lastmod>2023-10-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.zpast0r.com/tags/HTB-Heist/</loc>
-    <lastmod>2023-08-16</lastmod>
+    <lastmod>2023-10-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.zpast0r.com/tags/HTB-Ignition/</loc>
-    <lastmod>2023-08-16</lastmod>
+    <lastmod>2023-10-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.zpast0r.com/tags/HTB-Included/</loc>
-    <lastmod>2023-08-16</lastmod>
+    <lastmod>2023-10-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.zpast0r.com/tags/Open-Beat-SeasonII/</loc>
-    <lastmod>2023-08-16</lastmod>
+    <lastmod>2023-10-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.zpast0r.com/tags/HTB-Markup/</loc>
-    <lastmod>2023-08-16</lastmod>
+    <lastmod>2023-10-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.zpast0r.com/tags/HTB-Mongod/</loc>
-    <lastmod>2023-08-16</lastmod>
+    <lastmod>2023-10-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.zpast0r.com/tags/HTB-Netmon/</loc>
-    <lastmod>2023-08-16</lastmod>
+    <lastmod>2023-10-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.zpast0r.com/tags/HTB-Preignition/</loc>
-    <lastmod>2023-08-16</lastmod>
+    <lastmod>2023-10-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.zpast0r.com/tags/HTB-Synced/</loc>
-    <lastmod>2023-08-16</lastmod>
+    <lastmod>2023-10-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.zpast0r.com/tags/HTB-Hactics/</loc>
-    <lastmod>2023-08-16</lastmod>
+    <lastmod>2023-10-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.zpast0r.com/tags/HTB-Vaccine/</loc>
-    <lastmod>2023-08-16</lastmod>
+    <lastmod>2023-10-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -358,14 +374,14 @@
   
   <url>
     <loc>https://www.zpast0r.com/categories/CTF/</loc>
-    <lastmod>2023-08-16</lastmod>
+    <lastmod>2023-10-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://www.zpast0r.com/categories/CTF/HTB/</loc>
-    <lastmod>2023-08-16</lastmod>
+    <lastmod>2023-10-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
