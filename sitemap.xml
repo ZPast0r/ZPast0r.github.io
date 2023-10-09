@@ -273,14 +273,14 @@
   </url>
   
   <url>
-    <loc>https://www.zpast0r.com/tags/HTB-Explosion/</loc>
+    <loc>https://www.zpast0r.com/tags/HTB-Emdee-five-for-life/</loc>
     <lastmod>2023-10-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.zpast0r.com/tags/HTB-Emdee-five-for-life/</loc>
+    <loc>https://www.zpast0r.com/tags/HTB-Explosion/</loc>
     <lastmod>2023-10-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -301,13 +301,6 @@
   </url>
   
   <url>
-    <loc>https://www.zpast0r.com/tags/HTB-Ignition/</loc>
-    <lastmod>2023-10-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.zpast0r.com/tags/HTB-Included/</loc>
     <lastmod>2023-10-09</lastmod>
     <changefreq>weekly</changefreq>
@@ -316,6 +309,13 @@
   
   <url>
     <loc>https://www.zpast0r.com/tags/Open-Beat-SeasonII/</loc>
+    <lastmod>2023-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.zpast0r.com/tags/HTB-Ignition/</loc>
     <lastmod>2023-10-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -357,14 +357,14 @@
   </url>
   
   <url>
-    <loc>https://www.zpast0r.com/tags/HTB-Hactics/</loc>
+    <loc>https://www.zpast0r.com/tags/HTB-Vaccine/</loc>
     <lastmod>2023-10-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.zpast0r.com/tags/HTB-Vaccine/</loc>
+    <loc>https://www.zpast0r.com/tags/HTB-Hactics/</loc>
     <lastmod>2023-10-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
